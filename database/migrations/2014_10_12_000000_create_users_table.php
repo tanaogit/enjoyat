@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
-            $table->string('nick_name', 50)->nullable()->comment('表示名');
+            $table->string('username', 15)->nullable()->comment('ユーザー名');
             $table->string('icon')->default("UserDefault")->comment('アイコン');
             $table->string('tel', 20)->nullable()->comment('電話番号');
             $table->string('zipcode', 10)->nullable()->comment('郵便番号');
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable()->comment('市区町村');
             $table->string('street_address')->nullable()->comment('番地');
             $table->tinyInteger('gender')->unsigned()->nullable()->comment('性別 : 男性(1), 女性(2)');
-            $table->date('birthdate')->nullable()->comment('生年月日');
+            $table->date('birthday')->nullable()->comment('生年月日');
             $table->rememberToken();
             $table->timestamps();
         });

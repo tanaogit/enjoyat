@@ -15,7 +15,7 @@ class CreateProductUserTable extends Migration
     {
         Schema::create('product_user', function (Blueprint $table) {
             //複合キー
-            $table->primary(['user_id','product_id']);
+            $table->primary(['user_id', 'product_id']);
             //外部キー制約
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
