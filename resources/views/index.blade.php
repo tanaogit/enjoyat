@@ -17,6 +17,9 @@
     {{-- ヘッダー --}}
     <x-organisms.header></x-organisms.header>
 
+    {{-- フッター --}}
+    <x-organisms.footer></x-organisms.footer>
+
     <x-slot name="jsFile">
         <script src="{{ mix('js/index.js') }}"></script>
     </x-slot>
