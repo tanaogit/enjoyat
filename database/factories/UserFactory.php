@@ -14,12 +14,25 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $dt = $this->faker->dateTimeBetween('-40 years', '-10 years')->format('Y-m-d H:i:s');
+
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'email_verified_at' => $dt,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'username' => $this->faker->realtext(10),
+            'icon' => $this->faker->image(),
+            'tel' => $this->faker->phoneNumber(),
+            'zipcode' => $this->faker->postcode(),
+            'prefecture' => $this->faker->prefecture(),
+            'city' => $this->faker->city(),
+            'street_address' => $this->faker->streetAddress(),
+            'gender' => $this->faker->numberBetween(0, 1),
+            'birthday' => $this->faker->dateTimeBetween('-80 years', '-15years'),
+            'created_at' => $dt,
+            'updated_at' => $this->faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d H:i:s'),
         ];
     }
 

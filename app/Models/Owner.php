@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Owner extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -21,15 +20,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'username',
-        'icon',
-        'tel',
-        'zipcode',
-        'prefecture',
-        'city',
-        'street_address',
-        'gender',
-        'birthday',
     ];
 
     /**
@@ -51,18 +41,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function products()
+    public function stores()
     {
-        return $this->belongsToMany(Product::class);
-    }
-
-    public function genres()
-    {
-        return $this->belongsToMany(Genre::class);
-    }
-
-    public function posts()
-    {
-        return $this->belongsToMany(Post::class);
+        return $this->hasMany(Store::class);
     }
 }
