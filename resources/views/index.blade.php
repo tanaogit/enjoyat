@@ -15,10 +15,15 @@
     </x-slot>
 
     {{-- ヘッダー --}}
-    <x-organisms.header></x-organisms.header>
+    <x-organisms.header />
+
+    {{-- 簡易検索欄 --}}
+    <div class="w-3/4 py-8 md:py-20 mx-auto">
+        <x-organisms.simple-search-panel />
+    </div>
 
     {{-- フッター --}}
-    <x-organisms.footer></x-organisms.footer>
+    <x-organisms.footer />
 
     <x-slot name="jsFile">
         <script src="{{ mix('js/index.js') }}"></script>
