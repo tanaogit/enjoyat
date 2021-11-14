@@ -20,6 +20,10 @@ class Coupon extends Model
         'name',
         'description',
         'code',
-        'product_id',
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

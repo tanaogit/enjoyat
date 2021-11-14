@@ -27,7 +27,7 @@ class Product extends Model
 
     public function coupons()
     {
-        return $this->hasMany(Coupon::class);
+        return $this->belongsToMany(Coupon::class);
     }
 
     public function genres()
