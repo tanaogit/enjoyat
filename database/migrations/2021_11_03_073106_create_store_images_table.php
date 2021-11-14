@@ -16,7 +16,7 @@ class CreateStoreImagesTable extends Migration
         Schema::create('store_images', function (Blueprint $table) {
             $table->id();
             $table->string('image')->comment('店舗画像');
-            $table->enum('category', ['foods', 'drinks, others']);
+            $table->enum('category', ['foods', 'drinks', 'others']);
             $table->foreignId('store_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

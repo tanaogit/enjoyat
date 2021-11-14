@@ -18,7 +18,6 @@ class CreateCouponsTable extends Migration
             $table->string('name')->comment('クーポン名');
             $table->text('description')->comment('クーポン詳細');
             $table->string('code')->comment('クーポン番号');
-            $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
