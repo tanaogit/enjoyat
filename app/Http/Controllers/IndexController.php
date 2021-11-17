@@ -10,14 +10,14 @@ class IndexController extends Controller
     public function index()
     {
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
-            $latest_count = 3;
-        } elseif (is_tablet($_SERVER['HTTP_USER_AGENT']))  {
-            $latest_count = 6;
+            $display_count = 3;
+        } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
+            $display_count = 6;
         } else {
-            $latest_count = 9;
+            $display_count = 9;
         }
 
-        $latests = Store::OrderByCreatedAt('desc')->simplePaginate($latest_count);
-        return view('index', ['latests' => $latests]);
+        $latests = Store::orderBy('created_at', 'desc')->simplePaginate($display_count);
+        return view('index', compact($latests));
     }
 }

@@ -58,8 +58,4 @@ class Store extends Model
     {
         return $this->belongsToMany(Payment::class);
     }
-
-    public function scopeOrderByCreatedAt($query, $order = 'asc') {
-        return $query->orderBy('created_at', $order);
-    }
 }
