@@ -17,7 +17,7 @@ class IndexController extends Controller
             $display_count = 9;
         }
 
-        $latests = Store::orderBy('created_at', 'desc')->simplePaginate($display_count);
-        return view('index', compact($latests));
+        $latests = Store::latest()->simplePaginate($display_count);
+        return view('index', compact('latests'));
     }
 }
