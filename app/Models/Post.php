@@ -24,7 +24,18 @@ class Post extends Model
         'evaluation3',
         'evaluation4',
         'evaluation5',
+        'eva_average',
         'user_id',
         'store_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

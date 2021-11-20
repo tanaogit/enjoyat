@@ -18,14 +18,21 @@ class PostFactory extends Factory
         $user_id = User::all()->random(1)[0]->id;
         $store_id = Store::all()->random(1)[0]->id;
 
+        $evaluation1 = $this->faker->numberBetween(0, 5);
+        $evaluation2 = $this->faker->numberBetween(0, 5);
+        $evaluation3 = $this->faker->numberBetween(0, 5);
+        $evaluation4 = $this->faker->numberBetween(0, 5);
+        $evaluation5 = $this->faker->numberBetween(0, 5);
+
         return [
             'title' => $this->faker->realtext(10),
             'message' => $this->faker->realtext(20),
-            'evaluation1' => $this->faker->numberBetween(0, 5),
-            'evaluation2' => $this->faker->numberBetween(0, 5),
-            'evaluation3' => $this->faker->numberBetween(0, 5),
-            'evaluation4' => $this->faker->numberBetween(0, 5),
-            'evaluation5' => $this->faker->numberBetween(0, 5),
+            'evaluation1' => $evaluation1,
+            'evaluation2' => $evaluation2,
+            'evaluation3' => $evaluation3,
+            'evaluation4' => $evaluation4,
+            'evaluation5' => $evaluation5,
+            'eva_average' => ($evaluation1 + $evaluation2 + $evaluation3 + $evaluation4 + $evaluation5) / 5,
             'user_id' => $user_id,
             'store_id' => $store_id,
             'created_at' => $this->faker->dateTimeBetween('-40 years', '-10 years')->format('Y-m-d H:i:s'),
