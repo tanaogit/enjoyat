@@ -48,7 +48,7 @@ class IndexController extends Controller
             $display_count = 18;
         }
 
-        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->take($display_count)->get();
+        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->Paginate($display_count);
         //return view();
     }
 
@@ -61,5 +61,7 @@ class IndexController extends Controller
         } else {
             $display_count = 9;
         }
+
+        //return view();
     }
 }
