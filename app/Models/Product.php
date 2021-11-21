@@ -39,4 +39,9 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class)->withPivot('category');
     }
+
+    public function bookmarkUsers()
+    {
+        return $this->belongsToMany(User::class)->withPivot('category')->wherePivot('category', 'bookmark');
+    }
 }
