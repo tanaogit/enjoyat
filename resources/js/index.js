@@ -46,4 +46,34 @@ $(function() {
             });
         });
     });
+
+    // 「検索条件を追加する」ボタン
+    $('#add-detail-button').on('click', function() {
+        // URL変更処理
+        let url = $('#search-form').attr('action');
+        url = url.replace('simplesearch', 'detailsearch');
+        $('#search-form').attr('action', url);
+
+        // 「検索条件を追加する」ボタンを非表示
+        $('#add-detail-options').addClass('hidden');
+        // 「検索条件を絞る」ボタンを表示
+        $('#remove-detail-options').removeClass('hidden');
+        // 詳細検索の項目を表示
+        $('#detail-search-options').removeClass('hidden');
+    });
+
+    //「検索条件を絞る」ボタン
+    $('#remove-detail-button').on('click', function() {
+        // URL変更処理
+        let url = $('#search-form').attr('action');
+        url = url.replace('detailsearch', 'simplesearch');
+        $('#search-form').attr('action', url);
+
+        // 「検索条件を絞る」ボタンを非表示
+        $('#remove-detail-options').addClass('hidden');
+        // 「検索条件を追加する」ボタンを表示
+        $('#add-detail-options').removeClass('hidden');
+        // 詳細検索の項目を非表示
+        $('#detail-search-options').addClass('hidden');
+    });
 });
