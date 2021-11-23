@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->integer('evaluation3')->comment('評価項目3');
             $table->integer('evaluation4')->comment('評価項目4');
             $table->integer('evaluation5')->comment('評価項目5');
+            $table->double('eva_average', 2, 1)->comment('評価平均');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('store_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

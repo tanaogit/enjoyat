@@ -54,6 +54,11 @@ class Store extends Model
         return $this->hasMany(StoreImage::class);
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function payments()
     {
         return $this->belongsToMany(Payment::class);
