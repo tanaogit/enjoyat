@@ -19,7 +19,7 @@
 
     {{-- 簡易検索欄 --}}
     <div class="w-3/4 py-8 md:py-20 mx-auto">
-        <x-organisms.simple-search-panel />
+        <x-organisms.simple-search-panel :genres="$genres" :payments="$payments" />
     </div>
 
     {{-- フッター --}}

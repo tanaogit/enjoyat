@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->name('search.simplesearch');
+Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
 
 // 使わないから一旦コメントアウト(後々消す)
 // Route::get('/dashboard', function () {

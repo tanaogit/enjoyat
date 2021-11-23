@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function simplesearch(Request $request)
     {
-        dd($request); // 開発時に消す
+        dd('simplesearch', $request); // 開発時に消す
+    }
+
+    public function detailsearch(Request $request)
+    {
+        dd('detailsearch', $request); // 開発時に消す
     }
 }

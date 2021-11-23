@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Genre;
+use App\Models\Payment;
 use App\Models\Store;
 use App\Models\Post;
 use App\Models\Product;
@@ -19,13 +21,16 @@ class IndexController extends Controller
         } else {
             $display_count = 9;
         }
+      
+        $genres   = Genre::get(['id', 'name']);
+        $payments = Payment::get(['id', 'method']);
 
         $latests = Store::latest()->take($display_count)->get();
         $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->take($display_count)->get();
         $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->take($display_count)->get();
 
         //$tests = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->take($display_count)->get();
-        return view('index', compact('latests', 'evaluations', 'bookmarks'));
+        return view('index', compact('genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
     }
 
     public function latests()
