@@ -18,7 +18,7 @@ class CreateStoresTable extends Migration
             $table->string('name')->comment('店舗名');
             $table->string('email')->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('image')->default("StoreDefault")->comment('店舗画像');
+            $table->string('image')->default("storage/storeimages/default.png")->comment('店舗画像');
             $table->string('tel', 20)->nullable()->comment('電話番号');
             $table->text('introduction')->nullable()->comment('店舗紹介');
             $table->string('zipcode', 10)->nullable()->comment('郵便番号');

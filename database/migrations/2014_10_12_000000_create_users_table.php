@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
             $table->string('username', 15)->nullable()->comment('ユーザー名');
-            $table->string('icon')->default("UserDefault")->comment('アイコン');
+            $table->string('icon')->default("storage/userimages/default.png")->comment('アイコン');
             $table->string('tel', 20)->nullable()->comment('電話番号');
             $table->string('zipcode', 10)->nullable()->comment('郵便番号');
             $table->string('prefecture')->nullable()->comment('都道府県');
