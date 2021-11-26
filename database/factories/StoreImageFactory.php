@@ -17,7 +17,7 @@ class StoreImageFactory extends Factory
         $store_id = Store::all()->random(1)[0]->id;
 
         return [
-            'image' => $this->faker->image(),
+            'image' => 'storage/storeimages/default.png',
             'category' => $this->faker->randomElement(['foods', 'drinks', 'others']),
             'store_id' => $store_id,
             'created_at' => $this->faker->dateTimeBetween('-40 years', '-10 years')->format('Y-m-d H:i:s'),

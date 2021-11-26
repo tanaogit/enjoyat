@@ -21,7 +21,6 @@ class StoreFactory extends Factory
             'name' => $this->faker->realtext(10) . '店',
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => $dt,
-            'image' => $this->faker->image(),
             'tel' => $this->faker->phoneNumber(),
             'introduction' => $this->faker->realtext(50),
             'zipcode' => $this->faker->postcode(),
