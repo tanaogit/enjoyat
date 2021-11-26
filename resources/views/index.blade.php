@@ -22,6 +22,11 @@
         <x-organisms.simple-search-panel :genres="$genres" :payments="$payments" />
     </div>
 
+    {{-- 最新の店舗一覧 --}}
+    <div class="w-3/4 mx-auto">
+        <x-organisms.latest_stores :latests="$latests" />
+    </div>
+
     {{-- フッター --}}
     <x-organisms.footer />
 
