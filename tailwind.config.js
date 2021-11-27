@@ -18,6 +18,11 @@ module.exports = {
     variants: {
         extend: {
             opacity: ['disabled'],
+            borderWidth: ['hover', 'active'],
+            borderColor: ['hover', 'active'],
+            fontWeight: ['hover', 'active'],
+            inset: ['hover', 'active'],
+            translate: ['hover', 'active'],
         },
     },
 

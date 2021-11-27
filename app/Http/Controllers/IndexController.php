@@ -21,7 +21,7 @@ class IndexController extends Controller
         } else {
             $display_count = 9;
         }
-      
+
         $genres   = Genre::get(['id', 'name']);
         $payments = Payment::get(['id', 'method']);
 
@@ -33,6 +33,12 @@ class IndexController extends Controller
         return view('index', compact('genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
     }
 
+    /**
+     * 最新店舗一覧表示
+     * トップページの店舗最新順表示からすべて見るを選択したとき
+     *
+     * @return array $latests
+     */
     public function latests()
     {
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
@@ -44,7 +50,8 @@ class IndexController extends Controller
         }
 
         $latests = Store::latest()->Paginate($display_count);
-        //return view();
+        
+        return view('latests', compact('latests'));
     }
 
     public function evaluations()
@@ -73,5 +80,14 @@ class IndexController extends Controller
 
         $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->Paginate($display_count);
         //return view();
+    }
+
+    /**
+     * 店舗詳細画面
+     * トップページから店舗を選択された時
+     */
+    public function storedetail(Request $request)
+    {
+        dd($request); // 開発時に消す
     }
 }
