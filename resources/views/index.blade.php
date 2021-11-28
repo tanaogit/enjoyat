@@ -27,6 +27,9 @@
         <x-organisms.latest_stores :latests="$latests" />
     </div>
 
+    {{-- ページ上部に戻るボタン --}}
+    <x-atoms.buttons.scroll-top-button />
+
     {{-- フッター --}}
     <x-organisms.footer />
 
