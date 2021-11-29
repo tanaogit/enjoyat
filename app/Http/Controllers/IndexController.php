@@ -26,10 +26,9 @@ class IndexController extends Controller
         $payments = Payment::get(['id', 'method']);
 
         $latests = Store::latest()->take($display_count)->get();
-        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->take($display_count)->get();
+        $evaluations = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->take($display_count)->get();
         $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->take($display_count)->get();
 
-        //$tests = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->take($display_count)->get();
         return view('index', compact('genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
     }
 
@@ -64,7 +63,7 @@ class IndexController extends Controller
             $display_count = 18;
         }
 
-        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->Paginate($display_count);
+        $evaluations = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->Paginate($display_count);
         //return view();
     }
 
