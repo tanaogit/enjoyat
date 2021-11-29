@@ -27,8 +27,21 @@
         <x-organisms.latest_stores :latests="$latests" />
     </div>
 
+    {{-- 評価の高い店舗順 --}}
+    <div class="w-3/4 mx-auto">
+        <x-organisms.evaluation_stores :evaluations="$evaluations" />
+    </div>
+
+    {{-- 注目されているサブスク順--}}
+    <div class="w-3/4 mx-auto">
+        <x-organisms.bookmark_products :bookmarks="$bookmarks" />
+    </div>
+
     {{-- フッター --}}
     <x-organisms.footer />
+
+    {{-- デバイス情報 --}}
+    <input type="hidden" id="device" value={{ $device }}>
 
     <x-slot name="jsFile">
         <script src="{{ mix('js/index.js') }}"></script>

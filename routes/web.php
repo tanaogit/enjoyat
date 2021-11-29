@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/latests', [IndexController::class, 'latests'])->name('index.latests');
+Route::get('/evaluations', [IndexController::class, 'evaluations'])->name('index.evaluations');
+Route::get('/bookmarks', [IndexController::class, 'bookmarks'])->name('index.bookmarks');
 Route::get('/storedetail', [IndexController::class, 'storedetail'])->name('index.storedetail');
+Route::get('/productdetail', [IndexController::class, 'productdetail'])->name('index.productdetail');
 Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->name('search.simplesearch');
 Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
 

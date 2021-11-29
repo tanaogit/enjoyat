@@ -76,4 +76,23 @@ $(function() {
         // 詳細検索の項目を非表示
         $('#detail-search-options').addClass('hidden');
     });
+
+    // safariの場合タブレットでアクセスしてもPCだと認識されるため対応
+    const device = $('#device').val();
+    if (device === 'safari') {
+        // 画面幅が768px以上1023px以下の時
+        if (window.matchMedia('(min-width:768px)').matches && window.matchMedia('(max-width:1023px)').matches) {
+            // 最新の店舗一覧の7~9番目
+            const latestStores789 = $('#latest-stores > li:nth-child(7), #latest-stores > li:nth-child(8), #latest-stores > li:nth-child(9)');
+            // 評価の高い店舗一覧の7~9番目
+            const evaluationStores789 = $('#evaluation-stores > li:nth-child(7), #evaluation-stores > li:nth-child(8), #evaluation-stores > li:nth-child(9)');
+            // 注目されているサブスク一覧の7~9番目
+            const bookmarkProducts789 = $('#bookmark-products > li:nth-child(7), #bookmark-products > li:nth-child(8), #bookmark-products > li:nth-child(9)');
+            // 上記全部削除
+            latestStores789.remove();
+            evaluationStores789.remove();
+            bookmarkProducts789.remove();
+        }
+    }
+
 });
