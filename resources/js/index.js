@@ -78,8 +78,8 @@ $(function() {
     });
 
     // safariの場合タブレットでアクセスしてもPCだと認識されるため対応
-    const device = $('#device').val();
-    if (device === 'safari') {
+    const browser = $('#browser').val();
+    if (browser === 'safari') {
         // 画面幅が768px以上1023px以下の時
         if (window.matchMedia('(min-width:768px)').matches && window.matchMedia('(max-width:1023px)').matches) {
             // 最新の店舗一覧の7~9番目

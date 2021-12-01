@@ -14,13 +14,9 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $device = ''; // アクセス元の機種
-        if (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== false) {
-            // chromeではない時
-            if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') === false) {
-                $device = 'safari';
-            }
-        }
+        // ブラウザがsafariの場合のみアクセス元のブラウザを取得(SPは除外)
+        $browser = is_tablet_pc_safari() ? 'safari' : '';
+
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
             $display_count = 3;
         } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
@@ -37,7 +33,7 @@ class IndexController extends Controller
         $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->take($display_count)->get();
 
         //$tests = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->take($display_count)->get();
-        return view('index', compact('device', 'genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
+        return view('index', compact('browser', 'genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
     }
 
     /**

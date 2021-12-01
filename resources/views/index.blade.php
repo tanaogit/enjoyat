@@ -41,7 +41,7 @@
     <x-organisms.footer />
 
     {{-- デバイス情報 --}}
-    <input type="hidden" id="device" value={{ $device }}>
+    <input type="hidden" id="browser" value={{ $browser }}>
 
     <x-slot name="jsFile">
         <script src="{{ mix('js/index.js') }}"></script>
