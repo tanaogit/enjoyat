@@ -90,50 +90,50 @@ class Store extends Model
     
     public function scopeBusinessDaysFilter($query, $businessdays)
     {
-        if ($businessdays === null) {return;}
-        if (gettype($businessdays) !== 'array') {return;}
+        if (is_null($businessdays)) return;
+        if (!is_array($businessdays)) return;
 
         return $query
             ->when(in_array('sunday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('sunday', '0');
+                    $holidays_query->where('sunday', '0');
                 });
             })
             ->when(in_array('monday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('monday', '0');
+                    $holidays_query->where('monday', '0');
                 });
             })
             ->when(in_array('tuesday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('tuesday', '0');
+                    $holidays_query->where('tuesday', '0');
                 });
             })
             ->when(in_array('wednesday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('wednesday', '0');
+                    $holidays_query->where('wednesday', '0');
                 });
             })
             ->when(in_array('thursday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('thursday', '0');
+                    $holidays_query->where('thursday', '0');
                 });
             })
             ->when(in_array('friday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('friday', '0');
+                    $holidays_query->where('friday', '0');
                 });
             })
             ->when(in_array('saturday', $businessdays), function ($q) {
                 return $q->orWhereHas('holidays', function (Builder $holidays_query) {
-                    $holidays_query->Where('saturday', '0');
+                    $holidays_query->where('saturday', '0');
                 });
             });
     }
     
     public function scopeEvaluationFilter($query, $evaluation)
     {
-        if ($evaluation === '') {return;}
+        if (empty($evaluation)) return;
 
         return $query->when($evaluation, function ($q, $evaluation) {
             return $q->withAvg('Posts', 'eva_average')->having('posts_avg_eva_average', '>=', $evaluation);
@@ -142,8 +142,8 @@ class Store extends Model
     
     public function scopePaymentsFilter($query, $payments)
     {
-        if ($payments === null) {return;}
-        if (gettype($payments) !== 'array') {return;}
+        if (is_null($payments)) return;
+        if (!is_array($payments)) return;
 
         return $query->whereHas('payments', function (Builder $payments_query) use ($payments) {
             $payments_query->whereIn('id', $payments);
@@ -161,8 +161,8 @@ class Store extends Model
     
     public function scopeGenresFilter($query, $genres)
     {
-        if ($genres === null) {return;}
-        if (gettype($genres) !== 'array') {return;}
+        if (is_null($genres)) return;
+        if (!is_array($genres)) return;
 
         return $query->with('products.genres')
             ->whereHas('products.genres', function ($q) use ($genres) {
