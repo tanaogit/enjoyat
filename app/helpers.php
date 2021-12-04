@@ -22,6 +22,7 @@ if (! function_exists('is_tablet')) {
     /**
      * 引数に与えられる
      * ユーザーエージェント情報からタブレット端末か判定する処理
+     * ※ブラウザがsafariの場合falseを返す
      *
      * @param  string  $user_agent
      * @return  bool
@@ -34,4 +35,21 @@ if (! function_exists('is_tablet')) {
             return false;
         }
     }
+}
+
+/**
+ * アクセス元の端末がタブレットまたはPC、ブラウザがsafariの時を検出
+ *
+ * @return bool
+ */
+function is_tablet_pc_safari()
+{
+    // SPの場合
+    if (is_mobile($_SERVER['HTTP_USER_AGENT'])) return false;
+
+    // safari以外のタブレットの時
+    if (is_tablet($_SERVER['HTTP_USER_AGENT'])) return false;
+
+    // ブラウザがsafariのときtrueの返す
+    return (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') === false);
 }
