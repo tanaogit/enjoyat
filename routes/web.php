@@ -24,9 +24,26 @@ Route::get('/productdetail', [IndexController::class, 'productdetail'])->name('i
 Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->name('search.simplesearch');
 Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
 
-// 使わないから一旦コメントアウト(後々消す)
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+//ユーザー認証および専用ページのルーティング
+Route::prefix('user')->name('user.')->group(function() {
+    
+    //専用トップページ
+    Route::get('/', function () {
+        return view('user.index');
+    })->middleware(['auth:users'])->name('index');
 
-require __DIR__.'/auth.php';
+    //ユーザー認証
+    require __DIR__.'/auth/user.php';
+});
+
+//オーナー認証および専用ページのルーティング
+Route::prefix('owner')->name('owner.')->group(function() {
+
+    //専用トップページ
+    Route::get('/', function () {
+        return view('owner.index');
+    })->middleware(['auth:owners'])->name('index');
+    
+    //オーナー認証
+    require __DIR__.'/auth/owner.php';
+});
