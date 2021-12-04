@@ -29,20 +29,25 @@
         <div class="h-4"></div> {{-- スペース用 --}}
         <span id="detail-search-options_evaluation" class="border-l-4 border-pink-400 pl-2">
             クチコミの評価
-            <p class="flex justify-between md:block mt-4">
+            <div class="md:flex mt-4">
                 <label>
-                    <input type="radio" name="evaluation" value="4" class="mr-2">4以上
+                    <input type="radio" name="evaluation" value="" class="mr-2" checked>指定なし
                 </label>
-                <label class="md:ml-16">
-                    <input type="radio" name="evaluation" value="3" class="mr-2">3以上
-                </label>
-                <label class="md:ml-16">
-                    <input type="radio" name="evaluation" value="2" class="mr-2">2以上
-                </label>
-                <label class="md:ml-16">
-                    <input type="radio" name="evaluation" value="1" class="mr-2">1以上
-                </label>
-            </p>
+                <div class="mt-1 md:mt-0 flex justify-between md:justify-start">
+                    <label class="md:ml-10 lg:ml-16">
+                        <input type="radio" name="evaluation" value="4" class="mr-2">4以上
+                    </label>
+                    <label class="md:ml-10 lg:ml-16">
+                        <input type="radio" name="evaluation" value="3" class="mr-2">3以上
+                    </label>
+                    <label class="md:ml-10 lg:ml-16">
+                        <input type="radio" name="evaluation" value="2" class="mr-2">2以上
+                    </label>
+                    <label class="md:ml-10 lg:ml-16">
+                        <input type="radio" name="evaluation" value="1" class="mr-2">1以上
+                    </label>
+                </div>
+            </div>
         </span>
         <div class="h-4"></div> {{-- スペース用 --}}
         <label id="detail-search-options_payments" class="border-l-4 border-pink-400 pl-2">
@@ -56,14 +61,17 @@
         <div class="h-4"></div> {{-- スペース用 --}}
         <span id="detail-search-options_coupon" class="border-l-4 border-pink-400 pl-2">
             クーポン
-            <p class="mt-4">
+            <div class="mt-4">
                 <label>
+                    <input type="radio" name="coupon" value="" class="mr-2" checked>指定なし
+                </label>
+                <label class="ml-8 md:ml-16">
                     <input type="radio" name="coupon" value="0" class="mr-2">無
                 </label>
-                <label class="ml-16">
+                <label class="ml-8 md:ml-16">
                     <input type="radio" name="coupon" value="1" class="mr-2">有
                 </label>
-            </p>
+            </div>
         </span>
         <div class="h-4"></div> {{-- スペース用 --}}
         <label id="detail-search-options_genres" class="border-l-4 border-pink-400 pl-2">
