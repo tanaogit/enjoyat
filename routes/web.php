@@ -26,7 +26,7 @@ Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->n
 
 //ユーザー認証および専用ページのルーティング
 Route::prefix('user')->name('user.')->group(function() {
-    
+
     //専用トップページ
     Route::get('/', function () {
         return view('user.index');
@@ -43,7 +43,7 @@ Route::prefix('owner')->name('owner.')->group(function() {
     Route::get('/', function () {
         return view('owner.index');
     })->middleware(['auth:owners'])->name('index');
-    
+
     //オーナー認証
     require __DIR__.'/auth/owner.php';
 });
