@@ -2,6 +2,5 @@
 $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
-// コンパイルの時間短縮のために使うものだけ随時入れる
-// @import "~@fortawesome/fontawesome-free/scss/regular.scss";
-// @import "~@fortawesome/fontawesome-free/scss/brands.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
