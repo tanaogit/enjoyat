@@ -1,3 +1,4 @@
+ユーザー側のパスワード忘れた方用画面
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -16,7 +17,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route('user.password.email') }}">
             @csrf
 
             <!-- Email Address -->
