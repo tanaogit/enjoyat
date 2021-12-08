@@ -17,13 +17,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/latests', [IndexController::class, 'latests'])->name('index.latests');
+Route::get('/evaluations', [IndexController::class, 'evaluations'])->name('index.evaluations');
+Route::get('/bookmarks', [IndexController::class, 'bookmarks'])->name('index.bookmarks');
 Route::get('/storedetail', [IndexController::class, 'storedetail'])->name('index.storedetail');
+Route::get('/productdetail', [IndexController::class, 'productdetail'])->name('index.productdetail');
 Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->name('search.simplesearch');
 Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
 
-// 使わないから一旦コメントアウト(後々消す)
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+//ユーザー認証および専用ページのルーティング
+Route::prefix('user')->name('user.')->group(function() {
 
-require __DIR__.'/auth.php';
+    //専用トップページ
+    Route::get('/', function () {
+        return view('user.index');
+    })->middleware(['auth:users'])->name('index');
+
+    //ユーザー認証
+    require __DIR__.'/auth/user.php';
+});
+
+//オーナー認証および専用ページのルーティング
+Route::prefix('owner')->name('owner.')->group(function() {
+
+    //専用トップページ
+    Route::get('/', function () {
+        return view('owner.index');
+    })->middleware(['auth:owners'])->name('index');
+
+    //オーナー認証
+    require __DIR__.'/auth/owner.php';
+});

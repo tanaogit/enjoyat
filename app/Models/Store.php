@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Builder;
 
 class Store extends Model
 {
@@ -62,5 +63,110 @@ class Store extends Model
     public function payments()
     {
         return $this->belongsToMany(Payment::class);
+    }
+
+    public function scopeAccessFilter($query, $pref, $line, $station)
+    {
+        return $query->whereHas('accesses', function (Builder $access_query) use ($pref, $line, $station) {
+            $access_query
+                ->when($pref, function ($q, $pref) {
+                    return $q->where('prefecture', $pref);
+                })
+                ->when($line, function ($q, $line) {
+                    return $q->where('line', $line);
+                })
+                ->when($station, function ($q, $station) {
+                    return $q->where('station_name', $station);
+                });
+        });
+    }
+    
+    public function scopeFreeWordFilter($query, $freeword)
+    {
+        return $query->when($freeword, function ($q, $freeword) {
+            return $q->where('name', 'like', "%$freeword%");
+        });
+    }
+    
+    public function scopeBusinessDaysFilter($query, $businessdays)
+    {
+        if (is_null($businessdays)) return;
+        if (!is_array($businessdays)) return;
+
+        return $query
+            ->when(in_array('sunday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('sunday', '0');
+                });
+            })
+            ->when(in_array('monday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('monday', '0');
+                });
+            })
+            ->when(in_array('tuesday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('tuesday', '0');
+                });
+            })
+            ->when(in_array('wednesday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('wednesday', '0');
+                });
+            })
+            ->when(in_array('thursday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('thursday', '0');
+                });
+            })
+            ->when(in_array('friday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('friday', '0');
+                });
+            })
+            ->when(in_array('saturday', $businessdays), function ($q) {
+                return $q->orWhereHas('holidays', function (Builder $holidays_query) {
+                    $holidays_query->where('saturday', '0');
+                });
+            });
+    }
+    
+    public function scopeEvaluationFilter($query, $evaluation)
+    {
+        if (empty($evaluation)) return;
+
+        return $query->when($evaluation, function ($q, $evaluation) {
+            return $q->withAvg('Posts', 'eva_average')->having('posts_avg_eva_average', '>=', $evaluation);
+        });
+    }
+    
+    public function scopePaymentsFilter($query, $payments)
+    {
+        if (is_null($payments)) return;
+        if (!is_array($payments)) return;
+
+        return $query->whereHas('payments', function (Builder $payments_query) use ($payments) {
+            $payments_query->whereIn('id', $payments);
+        });
+    }
+    
+    public function scopeCouponFilter($query, $coupon)
+    {
+        if ($coupon === '0') {
+            return $query->with('products.coupons')->doesntHave('products.coupons');
+        } elseif ($coupon === '1') {
+            return $query->with('products.coupons')->has('products.coupons');
+        }
+    }
+    
+    public function scopeGenresFilter($query, $genres)
+    {
+        if (is_null($genres)) return;
+        if (!is_array($genres)) return;
+
+        return $query->with('products.genres')
+            ->whereHas('products.genres', function ($q) use ($genres) {
+                $q->whereIn('id', $genres);
+            });
     }
 }

@@ -27,11 +27,23 @@
         <x-organisms.latest_stores :latests="$latests" />
     </div>
 
+    {{-- 評価の高い店舗順 --}}
+    <div class="w-3/4 mx-auto">
+        <x-organisms.evaluation_stores :evaluations="$evaluations" />
+    </div>
+
+    {{-- 注目されているサブスク順--}}
+    <div class="w-3/4 mx-auto">
+        <x-organisms.bookmark_products :bookmarks="$bookmarks" />
+    </div>
     {{-- ページ上部に戻るボタン --}}
     <x-atoms.buttons.scroll-top-button />
 
     {{-- フッター --}}
     <x-organisms.footer />
+
+    {{-- デバイス情報 --}}
+    <input type="hidden" id="browser" value={{ $browser }}>
 
     <x-slot name="jsFile">
         <script src="{{ mix('js/index.js') }}"></script>
