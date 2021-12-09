@@ -1,56 +1,103 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<x-pages.template>
+    <x-slot name="title">オーナーログイン - Enjoyat</x-slot>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-slot name="style">
+        <style>
+            .pagesTemplateTitle {
+                    line-height: 5rem;
+                }
+            @media(min-width: 768px) {
+                .pagesTemplateTitle {
+                    line-height: 6rem;
+                }
+            }
+        </style>
+    </x-slot>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    {{-- ヘッダー --}}
+    <x-organisms.header />
 
-        <form method="POST" action="{{ route('owner.login') }}">
-            @csrf
+    {{-- ログインフォーム --}}
+    <div class="lg:flex lg:justify-around mt-6 lg:mt-12 w-4/5 mx-auto">
+        {{-- メールアドレスでログイン --}}
+        <div class="select-none lg:w-5/12 max-w-md mx-auto">
+            <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>メールアドレスでログイン</h1>
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+            <form method="POST" action="{{ route('owner.login') }}" id="login-form">
+                @csrf
+                <div class="mt-4">
+                    <label>
+                        メールアドレス
+                        <input type="email" name="email" placeholder="enjoyat@example.com" value="{{ old('email') }}" class="w-full" required autofocus inputmode="email">
+                        @error('email')
+                            <span id="email_validation" class="text-red-500 text-sm font-semibold">※ {{ $message }}</span>
+                        @enderror
+                    </label>
+                </div>
+                <div class="mt-4">
+                    <label>
+                        パスワード
+                        <i id="password-eye" class="fas fa-eye cursor-pointer ml-2" title="パスワードを表示する"></i>
+                        <input id="password" type="password" name="password" placeholder="パスワードを入力してください。" minlength="8" maxlength="255" value="{{ old('password') }}" class="w-full" required autocomplete="current-password">
+                        @error('password')
+                            <span id="password_validation" class="text-red-500 text-sm font-semibold">※ {{ $message }}</span>
+                        @enderror
+                    </label>
+                </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+                <div class="mt-4">
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input type="checkbox" class="cursor-pointer" name="remember">
+                        <span class="ml-2 text-sm text-gray-600">ログイン状態を保持する</span>
+                    </label>
+                </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <div class="lg:flex lg:justify-between mt-4">
+                    <x-atoms.buttons.pink-button content="ログイン" class="block text-white px-6 py-4 w-full lg:w-5/12 font-bold bg-pink-400 rounded-lg hover:bg-pink-500" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+                    <a href="{{ route('owner.register') }}" class="block text-center mt-4 lg:mt-0 lg:w-6/12 px-8 py-4 text-sm font-bold rounded-lg border-gray-700 hover:border-gray-900 border-2 hover:bg-gray-100">新規登録の方はこちら</a>
+                </div>
+            </form>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('owner.password.request'))
+            @if (Route::has('owner.password.request'))
+                <div class="mt-6 text-center lg:text-left">
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('owner.password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        パスワードをお忘れの方
                     </a>
-                @endif
+                </div>
+            @endif
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+
+        {{-- 連携済みアカウントでログイン --}}
+        <div class="lg:w-5/12 mt-6 lg:mt-0 max-w-md mx-auto">
+            <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>連携済みアカウントでログイン</h1>
+
+            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-400 hover:bg-blue-500 text-white px-4 py-3">
+                <i class="fab fa-twitter w-1/5 text-2xl"></i>
+                <p class="w-4/5">Twitterでログイン</p>
+            </a>
+            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-700 hover:bg-blue-800 text-white px-4 py-3">
+                <i class="fab fa-facebook-f w-1/5 text-2xl"></i>
+                <p class="w-4/5">Facebookでログイン</p>
+            </a>
+            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-red-700 hover:bg-red-800 text-white px-4 py-3">
+                <i class="fab fa-google w-1/5 text-2xl"></i>
+                <p class="w-4/5">Googleでログイン</p>
+            </a>
+        </div>
+    </div>
+
+    {{-- フッター --}}
+    <div class="mt-6 lg:mt-12">
+        <x-organisms.footer />
+    </div>
+
+    <x-slot name="jsFile">
+        <script src="{{ mix('js/owner/login.js') }}"></script>
+    </x-slot>
+</x-pages.template>
+

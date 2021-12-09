@@ -36,6 +36,7 @@
     <div class="w-3/4 mx-auto">
         <x-organisms.bookmark_products :bookmarks="$bookmarks" />
     </div>
+    
     {{-- ページ上部に戻るボタン --}}
     <x-atoms.buttons.scroll-top-button />
 
