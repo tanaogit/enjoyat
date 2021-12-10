@@ -4,7 +4,7 @@
             @auth('users')
                 <a href="{{ route('user.index') }}" class="block p-4" style="line-height: 4rem">マイページへ</a>
             @else
-                <a href="{{ route('user.login') }}" class="block p-4" style="line-height: 4rem">無料会員登録</a>
+                <a href="{{ route('user.login') }}" class="block p-4" style="line-height: 4rem">ログイン画面へ</a>
             @endauth
         @endif
     </li>

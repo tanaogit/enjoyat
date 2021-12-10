@@ -1,17 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+<x-pages.template>
+    <x-slot name="title">ユーザーのダッシュボード - Enjoyat</x-slot>
+
+    <x-slot name="style">
+        <style>
+            .pagesTemplateTitle {
+                    line-height: 5rem;
+                }
+            @media(min-width: 768px) {
+                .pagesTemplateTitle {
+                    line-height: 6rem;
+                }
+            }
+        </style>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+    {{-- ヘッダー --}}
+    <x-organisms.user.header />
+
+    {{-- ページ上部に戻るボタン --}}
+    <x-atoms.buttons.scroll-top-button />
+
+    {{-- フッター --}}
+    <x-organisms.footer />
+
+    {{-- デバイス情報 --}}
+    {{-- <input type="hidden" id="browser" value={{ $browser }}> --}}
+
+    <x-slot name="jsFile">
+        <script src="{{ mix('js/user/index.js') }}"></script>
+    </x-slot>
+</x-pages.template>
