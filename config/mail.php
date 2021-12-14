@@ -36,13 +36,13 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
-            'timeout' => null,
-            'auth_mode' => null,
+            'host' => env('MAIL_HOST', 'smtp.mailtrap.io'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+            'port' => env('MAIL_PORT', 2525), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+            'username' => env('MAIL_USERNAME'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+            'password' => env('MAIL_PASSWORD'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+            'timeout' => null, //本番メールサーバー契約後に本番用に設定変更
+            'auth_mode' => null, //本番メールサーバー契約後に本番用に設定変更
         ],
 
         'ses' => [
@@ -92,8 +92,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'enjoyat@example.com'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
+        'name' => env('MAIL_FROM_NAME', 'Enjoyat'), //本番メールサーバー契約後に本番用に設定変更(.envファイルも:優先読み込みのため忘れず)
     ],
 
     /*
