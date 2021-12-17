@@ -17,12 +17,12 @@ class UserFactory extends Factory
         $dt = $this->faker->dateTimeBetween('-40 years', '-10 years')->format('Y-m-d H:i:s');
 
         return [
-            'name' => $this->faker->name(),
+            'username' => $this->faker->realtext(10),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => $dt,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'username' => $this->faker->realtext(10),
+            'name' => $this->faker->name(),
             'tel' => $this->faker->phoneNumber(),
             'zipcode' => $this->faker->postcode(),
             'prefecture' => $this->faker->prefecture(),

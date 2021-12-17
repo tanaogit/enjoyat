@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * ログイン画面
      *
      * @return \Illuminate\View\View
      */
@@ -21,23 +21,26 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * ログイン処理
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request)
     {
-        dd('オーナーログイン', $request); // 開発時に消す
+        //dd('オーナーログイン', $request); // 開発時に消す
+        
+        //ログイン認証試行
         $request->authenticate();
 
+        //セッションを再生成
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::OWNER_HOME);
     }
 
     /**
-     * Destroy an authenticated session.
+     * ログアウト処理
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -46,8 +49,10 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('owners')->logout();
 
+        //セッションを無効化
         $request->session()->invalidate();
 
+        //CSRFトークンの再生成
         $request->session()->regenerateToken();
 
         return redirect('/');
