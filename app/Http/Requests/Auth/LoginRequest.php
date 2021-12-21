@@ -22,20 +22,21 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * リクエストのバリデーション処理
+     * タイプヒントで呼び出すことで処理を実行
      *
      * @return array
      */
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'max:255'],
         ];
     }
 
     /**
-     * Attempt to authenticate the request's credentials.
+     * リクエストのログイン認証試行処理
      *
      * @return void
      *
@@ -59,7 +60,7 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Ensure the login request is not rate limited.
+     * ログイン失敗回数を記録し、指定回数以上失敗するとログインを一定時間禁止する処理
      *
      * @return void
      *
