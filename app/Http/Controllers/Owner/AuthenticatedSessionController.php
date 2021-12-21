@@ -28,7 +28,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        dd('オーナーログイン', $request); // 開発時に消す
         $request->authenticate();
 
         $request->session()->regenerate();

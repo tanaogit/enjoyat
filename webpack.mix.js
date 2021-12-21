@@ -1,4 +1,5 @@
-const mix = require('laravel-mix');
+const mix  = require('laravel-mix');
+const glob = require('glob');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,12 +12,18 @@ const mix = require('laravel-mix');
  |
  */
 
+// jsファイルにはglobを使う
+glob.sync('resources/js/*.js').map(function(file) {
+    mix.js(file, 'public/js').version()
+});
+glob.sync('resources/js/user/*.js').map(function(file) {
+    mix.js(file, 'public/js/user').version()
+});
+glob.sync('resources/js/owner/*.js').map(function(file) {
+    mix.js(file, 'public/js/owner').version()
+});
+
 mix
-.js('resources/js/app.js', 'public/js')
-.js('resources/js/index.js', 'public/js')
-.js('resources/js/user/login.js', 'public/js/user')
-.js('resources/js/user/index.js', 'public/js/user')
-.js('resources/js/owner/login.js', 'public/js/owner')
 .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),

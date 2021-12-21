@@ -17,6 +17,13 @@
     {{-- ヘッダー --}}
     <x-organisms.user.header />
 
+    {{-- ログアウト確認ダイアログ --}}
+    <div id="logout-confirm-dialog">
+        <div class="pt-2 pb-4">
+            <p>本当にログアウトしてもよろしいですか？</p>
+        </div>
+    </div>
+
     {{-- ページ上部に戻るボタン --}}
     <x-atoms.buttons.scroll-top-button />
 

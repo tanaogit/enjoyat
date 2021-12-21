@@ -30,7 +30,7 @@
                 <div class="mt-4">
                     <label>
                         メールアドレス
-                        <input type="email" name="email" placeholder="enjoyat@example.com" value="{{ old('email') }}" class="w-full" required autofocus inputmode="email">
+                        <input id="email" type="email" name="email" placeholder="enjoyat@example.com" value="{{ old('email') }}" class="w-full" required autofocus inputmode="email">
                         @error('email')
                             <span id="email_validation" class="text-red-500 text-sm font-semibold">※ {{ $message }}</span>
                         @enderror

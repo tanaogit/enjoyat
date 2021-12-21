@@ -8,15 +8,15 @@
 
         {{-- PC表示におけるメニュー --}}
         <div class="z-20 hidden md:block">
-            <x-atoms.user.pc-header-menu />
+            <x-atoms.owner.pc-header-menu />
         </div>
     </div>
 </header>
 {{-- SP表示におけるメニュー(ハンバーガーメニュークリック時に表示) --}}
 <div id="pagesTemplateSpMenus" class="hidden bg-gray-200 text-center">
-    <form method="POST" action="{{ route('user.logout') }}" class="user-logout-form">
+    <form method="POST" action="{{ route('owner.logout') }}" class="owner-logout-form">
         @csrf
-        <button id="sp-user-logout-button" class="hover:bg-gray-300 w-full" style="line-height: 50px">
+        <button id="sp-owner-logout-button" class="hover:bg-gray-300 w-full" style="line-height: 50px">
             ログアウト
         </button>
     </form>
