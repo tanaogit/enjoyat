@@ -4,7 +4,7 @@ require('jquery-ui/ui/widgets/dialog.js'); // ダイアログ
 $(function() {
     // ログアウトボタン押下時に表示されるダイアログ
     $('#logout-confirm-dialog').dialog({
-        title: 'ユーザーログアウト',
+        title: 'オーナーログアウト',
         autoOpen: false,
         width: 'auto',
         height: 'auto',
@@ -15,7 +15,7 @@ $(function() {
             {
                 html: '<i class="fas fa-sign-out-alt"></i> ログアウト',
                 click: function() {
-                    $('.user-logout-form').submit();
+                    $('.owner-logout-form').submit();
                 },
             },
             {
@@ -34,7 +34,7 @@ $(function() {
     });
 
     // ログアウトボタン押下時にダイアログを表示
-    $('#pc-user-logout-button, #sp-user-logout-button').on('click', function(e) {
+    $('#pc-owner-logout-button, #sp-owner-logout-button').on('click', function(e) {
         e.preventDefault();
         $('#logout-confirm-dialog').dialog('open');
     });
