@@ -23,7 +23,8 @@ return [
     'array'                => ':attributeには、配列を指定してください。',
     'attached'             => 'この:attributeはすでに添付されています。',
     'attributes'           => [
-        'name'     => '名前',
+        'name'     => '氏名',
+        'username' => 'ユーザー名',
         'email'    => 'メールアドレス',
         'password' => 'パスワード',
     ],
