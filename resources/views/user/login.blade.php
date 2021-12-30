@@ -17,13 +17,18 @@
     {{-- ヘッダー --}}
     <x-organisms.header />
 
+    {{-- パスワードリセットに成功した時に表示するダイアログ --}}
+    @if (!empty(session('status')))
+        <div id="password-reset-dialog">
+            <p>{{ session('status') }}</p>
+        </div>
+    @endif
+
     {{-- ログインフォーム --}}
     <div class="lg:flex lg:justify-around mt-6 lg:mt-12 w-4/5 mx-auto">
         {{-- メールアドレスでログイン --}}
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>メールアドレスでログイン</h1>
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('user.login') }}" id="login-form">
                 @csrf
@@ -60,7 +65,6 @@
                     <a href="{{ route('user.register') }}" class="block text-center mt-4 lg:mt-0 lg:w-6/12 px-8 py-4 text-sm font-bold rounded-lg border-gray-700 hover:border-gray-900 border-2 hover:bg-gray-100">新規登録の方はこちら</a>
                 </div>
             </form>
-
 
             @if (Route::has('user.password.request'))
                 <div class="mt-6 text-center lg:text-left">

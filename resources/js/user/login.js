@@ -1,4 +1,25 @@
+// jQuery UIの読み込み
+require('jquery-ui/ui/widgets/dialog.js');  // ダイアログ
+
 $(function() {
+    // パスワードリセットに成功した時に表示するダイアログ
+    $('#password-reset-dialog').dialog({
+        title: 'パスワードリセット結果',
+        width: 'auto',
+        height: 'auto',
+        modal: true,
+        draggable: false,
+        resizable: false,
+        buttons: [
+            {
+                html: '<i class="fas fa-times"></i> 閉じる',
+                click: function() {
+                    $(this).dialog('close');
+                },
+            }
+        ],
+    });
+
     // ハンバーガーメニュー開閉操作
     $('#pagesTemplateHumburgerMenus').on('click', function() {
         $('#pagesTemplateSpMenus').toggleClass('hidden');
