@@ -75,15 +75,15 @@
         <div class="lg:w-5/12 mt-6 lg:mt-0 max-w-md mx-auto">
             <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>連携済みアカウントでログイン</h1>
 
-            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-400 hover:bg-blue-500 text-white px-4 py-3">
+            <a href="{{ route('user.social.redirect', ['provider' => 'twitter']) }}" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-400 hover:bg-blue-500 text-white px-4 py-3">
                 <i class="fab fa-twitter w-1/5 text-2xl"></i>
                 <p class="w-4/5">Twitterでログイン</p>
             </a>
-            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-700 hover:bg-blue-800 text-white px-4 py-3">
+            <a href="{{ route('user.social.redirect', ['provider' => 'facebook']) }}" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-blue-700 hover:bg-blue-800 text-white px-4 py-3">
                 <i class="fab fa-facebook-f w-1/5 text-2xl"></i>
                 <p class="w-4/5">Facebookでログイン</p>
             </a>
-            <a href="" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-red-700 hover:bg-red-800 text-white px-4 py-3">
+            <a href="{{ route('user.social.redirect', ['provider' => 'google']) }}" class="flex items-center mt-4 lg:mt-6 w-full rounded-lg text-center bg-red-700 hover:bg-red-800 text-white px-4 py-3">
                 <i class="fab fa-google w-1/5 text-2xl"></i>
                 <p class="w-4/5">Googleでログイン</p>
             </a>
