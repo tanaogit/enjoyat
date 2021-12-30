@@ -33,13 +33,13 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request)
     {
+        // emailはhiddenで渡してくるためバリデーションは不要
         $request->validate([
             'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'string', 'confirmed', 'min:8', 'max:255'],
         ]);
 
-        //パスワードリセット
+        // パスワードリセット
         $status = Password::broker('users')->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
@@ -52,7 +52,7 @@ class NewPasswordController extends Controller
             }
         );
 
-        //リセット結果
+        // リセット結果
         return $status == Password::PASSWORD_RESET
                     ? redirect()->route('user.login')->with('status', __($status))
                     : back()->withInput($request->only('email'))
