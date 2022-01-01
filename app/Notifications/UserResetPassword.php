@@ -38,19 +38,19 @@ class UserResetPassword extends Notification
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));
 
-        return $this->buildMailMessage($url);
+        return $this->buildMailMessage($notifiable, $url);
     }
 
-    protected function buildMailMessage($url)
+    protected function buildMailMessage($notifiable, $url)
     {
         return (new MailMessage)
             ->subject('【Enjoyat】パスワードリセットのご案内')
-            ->greeting('Enjoyatのパスワードリセット申請を受け付けました。')
+            ->greeting($notifiable->username . 'さんのパスワードリセット申請を受け付けました。')
             ->line('以下「パスワードリセット」ボタンをクリックして新しいパスワードをご登録ください。')
             ->line('パスワードリセットの申請に心当たりがない場合は、以降の対応は不要となりますのでメールの破棄をお願いいたします。')
             ->action('パスワードリセット', $url)
             ->line('パスワードリセットの有効期限は60分間となりますので期限内にご登録を完了してください。')
-            ->line('不明点等ございましたら以下のお問合せフォームよりご連絡ください。')
+            ->line('不明点等ございましたら以下のお問い合わせフォームよりご連絡ください。')
             ->line('※送信専用のメールアドレスのため直接の返信はできません。');
     }
 }
