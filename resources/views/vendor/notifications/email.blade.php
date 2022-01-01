@@ -1,4 +1,4 @@
-@component('mail::message', ['reseturl' => $actionUrl])
+@component('mail::message', ['textgreeting' => $greeting, 'reseturl' => $actionUrl])
 {{-- Greeting --}}
 # {{ $greeting }}
 
@@ -24,7 +24,7 @@
 Enjoyat<br>
 URL:【決定後に設定】
 
-お問い合せフォーム:【決定後に設定】
+お問い合わせフォーム:【決定後に設定】
 
 Facebook:【決定後に設定】<br>
 Twitter:【決定後に設定】
