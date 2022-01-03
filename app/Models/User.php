@@ -27,6 +27,7 @@ class User extends Authenticatable
         'street_address',
         'gender',
         'birthday',
+        'social_login',
     ];
 
     protected $hidden = [
@@ -53,9 +54,9 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function providers()
+    public function provider()
     {
-        return $this->hasMany(UserOauthProvider::class);
+        return $this->hasOne(UserOauthProvider::class);
     }
 
     /**

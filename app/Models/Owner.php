@@ -17,6 +17,7 @@ class Owner extends Authenticatable
         'name',
         'email',
         'password',
+        'social_login',
     ];
 
     protected $hidden = [
@@ -33,9 +34,9 @@ class Owner extends Authenticatable
         return $this->hasMany(Store::class);
     }
 
-    public function providers()
+    public function provider()
     {
-        return $this->hasMany(OwnerOauthProvider::class);
+        return $this->hasOne(OwnerOauthProvider::class);
     }
 
     /**

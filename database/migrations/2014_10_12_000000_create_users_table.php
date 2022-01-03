@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('street_address')->nullable()->comment('番地');
             $table->tinyInteger('gender')->unsigned()->nullable()->comment('性別 : 男性(1), 女性(2)');
             $table->date('birthday')->nullable()->comment('生年月日');
+            $table->boolean('social_login')->default(0)->comment('ソーシャルログインアカウントか判定');
             $table->rememberToken();
             $table->timestamps();
         });

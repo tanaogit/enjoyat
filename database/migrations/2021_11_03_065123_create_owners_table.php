@@ -19,6 +19,7 @@ class CreateOwnersTable extends Migration
             $table->string('email')->unique()->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->comment('パスワード');
+            $table->boolean('social_login')->default(0)->comment('ソーシャルログインアカウントか判定');
             $table->rememberToken();
             $table->timestamps();
         });

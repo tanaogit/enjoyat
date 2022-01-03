@@ -91,6 +91,9 @@
                 <i class="fab fa-google w-1/5 text-2xl"></i>
                 <p class="w-4/5">Googleでログイン</p>
             </a>
+            @error('oauth')
+                <div class="text-red-500 text-sm font-semibold mt-5">※ {{ $message }}</div>
+            @enderror
         </div>
     </div>
 

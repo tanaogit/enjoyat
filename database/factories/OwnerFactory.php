@@ -21,6 +21,7 @@ class OwnerFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => $dt,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'social_login' => $this->faker->boolean(50),
             'remember_token' => Str::random(10),
             'created_at' => $dt,
             'updated_at' => $this->faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d H:i:s'),
