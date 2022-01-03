@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\OAuth\OAuthProviderCallbackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,10 @@ Route::get('/storedetail', [IndexController::class, 'storedetail'])->name('index
 Route::get('/productdetail', [IndexController::class, 'productdetail'])->name('index.productdetail');
 Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->name('search.simplesearch');
 Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
+
+Route::get('/oauth/social-login/{provider}/callback', OAuthProviderCallbackController::class)
+                ->where(['provider' => '(twitter|facebook|google)'])
+                ->name('oauth.social.callback');
 
 //ユーザー認証および専用ページのルーティング
 Route::prefix('user')->name('user.')->group(function() {

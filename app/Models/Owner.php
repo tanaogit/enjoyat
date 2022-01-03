@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\OwnerResetPassword as ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Builder;
 
 class Owner extends Authenticatable
 {
@@ -16,6 +17,7 @@ class Owner extends Authenticatable
         'name',
         'email',
         'password',
+        'social_login',
     ];
 
     protected $hidden = [
@@ -30,6 +32,11 @@ class Owner extends Authenticatable
     public function stores()
     {
         return $this->hasMany(Store::class);
+    }
+
+    public function provider()
+    {
+        return $this->hasOne(OwnerOauthProvider::class);
     }
 
     /**

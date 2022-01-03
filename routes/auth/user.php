@@ -8,6 +8,7 @@ use App\Http\Controllers\User\NewPasswordController;
 use App\Http\Controllers\User\PasswordResetLinkController;
 use App\Http\Controllers\User\RegisteredUserController;
 use App\Http\Controllers\User\VerifyEmailController;
+use App\Http\Controllers\User\OAuthRedirectToProviderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
@@ -23,6 +24,11 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest:users');
+
+//ソーシャルログイン
+Route::get('/social-login/{provider}/redirect', OAuthRedirectToProviderController::class)
+                ->where(['provider' => '(twitter|facebook|google)'])
+                ->name('social.redirect');
 
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->middleware('guest:users')

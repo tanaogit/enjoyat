@@ -8,16 +8,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\UserResetPassword as ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
-        'username',
+        'name',
         'icon',
         'tel',
         'zipcode',
@@ -26,6 +27,7 @@ class User extends Authenticatable
         'street_address',
         'gender',
         'birthday',
+        'social_login',
     ];
 
     protected $hidden = [
@@ -50,6 +52,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function provider()
+    {
+        return $this->hasOne(UserOauthProvider::class);
     }
 
     /**

@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'street_address' => $this->faker->streetAddress(),
             'gender' => $this->faker->numberBetween(0, 1),
             'birthday' => $this->faker->dateTimeBetween('-80 years', '-15years'),
+            'social_login' => $this->faker->boolean(50),
             'created_at' => $dt,
             'updated_at' => $this->faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d H:i:s'),
         ];
