@@ -105,7 +105,9 @@ class IndexController extends Controller
      */
     public function storedetail(Request $request)
     {
-        dd('storedetail', $request); // 開発時に消す
+        $store = Store::find($request->id);
+
+        dd('storedetail', $request, 'store', $store); // 開発時に消す
     }
 
     /**
@@ -114,6 +116,8 @@ class IndexController extends Controller
      */
     public function productdetail(Request $request)
     {
-        dd('productdetail', $request); // 開発時に消す
+        $product = Product::find($request->id);
+
+        dd('productdetail', $request, 'product', $product); // 開発時に消す
     }
 }
