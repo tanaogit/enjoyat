@@ -7,6 +7,9 @@
 
         <title>{{ $title }}</title>
 
+        <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
+        <link rel="icon" type="image/png" href="{{ asset('android-touch-icon.png') }}" sizes="192x192">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         {{-- styleタグを設定する --}}

@@ -1,7 +1,7 @@
 <header class="flex bg-gray-100 h-20 md:h-24">
     <div class="mx-auto w-10/12 md:w-11/12 flex justify-between">
         {{-- Enjoyatのロゴ --}}
-        <x-atoms.service-logo />
+        <x-atoms.service-logo class="h-20 md:h-24 w-1/2 md:w-10/12" />
 
         {{-- SP表示におけるハンバーガメニュー --}}
         <x-atoms.hamburger-menu />
