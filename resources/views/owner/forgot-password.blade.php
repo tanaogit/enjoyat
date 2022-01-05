@@ -1,6 +1,15 @@
 <x-pages.template>
     <x-slot name="title">オーナーパスワードリセット用メール送信 - Enjoyat</x-slot>
 
+    <x-slot name="style">
+        <style>
+            /* ツールチップ */
+            .ui-tooltip {
+                width: 250px;
+            }
+        </style>
+    </x-slot>
+
     {{-- ヘッダー --}}
     <x-organisms.header />
 
