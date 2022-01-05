@@ -1,19 +1,6 @@
 <x-pages.template>
     <x-slot name="title">Enjoyat</x-slot>
 
-    <x-slot name="style">
-        <style>
-            .pagesTemplateTitle {
-                    line-height: 5rem;
-                }
-            @media(min-width: 768px) {
-                .pagesTemplateTitle {
-                    line-height: 6rem;
-                }
-            }
-        </style>
-    </x-slot>
-
     {{-- ヘッダー --}}
     <x-organisms.header />
 
@@ -36,7 +23,7 @@
     <div class="w-3/4 mx-auto">
         <x-organisms.bookmark_products :bookmarks="$bookmarks" />
     </div>
-    
+
     {{-- ページ上部に戻るボタン --}}
     <x-atoms.buttons.scroll-top-button />
 

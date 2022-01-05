@@ -1,23 +1,6 @@
 <x-pages.template>
     <x-slot name="title">ユーザーパスワードリセット用メール送信 - Enjoyat</x-slot>
 
-    <x-slot name="style">
-        <style>
-            .pagesTemplateTitle {
-                    line-height: 5rem;
-                }
-            @media(min-width: 768px) {
-                .pagesTemplateTitle {
-                    line-height: 6rem;
-                }
-            }
-            /* ツールチップ */
-            .ui-tooltip {
-                width: 250px;
-            }
-        </style>
-    </x-slot>
-
     {{-- ヘッダー --}}
     <x-organisms.header />
 

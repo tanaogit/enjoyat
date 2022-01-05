@@ -1,19 +1,6 @@
 <x-pages.template>
     <x-slot name="title">ユーザー新規登録 - Enjoyat</x-slot>
-
-    <x-slot name="style">
-        <style>
-            .pagesTemplateTitle {
-                    line-height: 5rem;
-                }
-            @media(min-width: 768px) {
-                .pagesTemplateTitle {
-                    line-height: 6rem;
-                }
-            }
-        </style>
-    </x-slot>
-
+    
     {{-- ヘッダー --}}
     <x-organisms.header />
 
