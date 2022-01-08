@@ -21,6 +21,16 @@
                 <x-atoms.icons.question-icon id="question-icon" class="text-md" title="入力されたメールアドレス宛にパスワードリセット用のリンク付きのメールを送信します。" />
             </h1>
 
+            {{-- メール送信ボタン押下時に表示するローディングアイコンのダイアログ --}}
+            <div id="sending-dialog" class="text-center">
+                <div class="mx-12 sm:mx-32 mt-6 sm:mt-12 mb-6 sm:mb-12">
+                    <div class="text-6xl sm:text-8xl mb-6 sm:mb-12">
+                        <i class="fas fa-sync opacity-70"></i>
+                    </div>
+                    <p class="text-lg sm:text-xl">メールを送信中です…</p>
+                </div>
+            </div>
+
             {{-- 送信に成功した時に表示するダイアログ --}}
             @if (!empty(session('status')))
                 <div id="sent-dialog">
@@ -41,7 +51,7 @@
                 </div>
 
                 <div class="mt-14 md:mt-16">
-                    <x-atoms.buttons.pink-button content="メールを送信する" class="block text-white px-6 py-4 w-full xl:w-5/12 lg:mx-auto font-bold bg-pink-400 rounded-lg hover:bg-pink-500" />
+                    <x-atoms.buttons.pink-button content="メールを送信する" id="send-main-button" class="block text-white px-6 py-4 w-full xl:w-5/12 lg:mx-auto font-bold bg-pink-400 rounded-lg hover:bg-pink-500" />
                 </div>
                 </div>
             </form>
