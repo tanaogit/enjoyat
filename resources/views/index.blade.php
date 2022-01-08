@@ -5,7 +5,7 @@
     <x-organisms.header />
 
     {{-- 簡易検索欄 --}}
-    <div class="w-3/4 py-8 md:py-20 mx-auto">
+    <div class="w-3/4 py-8 md:py-12 mx-auto">
         <x-organisms.simple-search-panel :genres="$genres" :payments="$payments" />
     </div>
 

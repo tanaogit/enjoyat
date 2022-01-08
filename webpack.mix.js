@@ -22,6 +22,9 @@ glob.sync('resources/js/user/*.js').map(function(file) {
 glob.sync('resources/js/owner/*.js').map(function(file) {
     mix.js(file, 'public/js/owner').version()
 });
+glob.sync('resources/js/search/*.js').map(function(file) {
+    mix.js(file, 'public/js/search').version()
+});
 
 mix
 .postCss('resources/css/app.css', 'public/css', [
