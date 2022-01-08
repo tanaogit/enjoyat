@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\Store;
 
@@ -19,7 +21,7 @@ class SearchController extends Controller
 
         $search_stores = Store::AccessFilter($request->pref, $request->line, $request->station)->Paginate($display_count);
 
-        dd('simplesearch', $request, 'stores', $search_stores); // 開発時に消す
+        return view('search.simplesearch', compact('search_stores'));
     }
 
     public function detailsearch(Request $request)
@@ -30,6 +32,18 @@ class SearchController extends Controller
             $display_count = 12;
         } else {
             $display_count = 18;
+        }
+
+        // 検索条件に合致する支払い方法を取得
+        $payments = '';
+        if (!empty($request->payments)) {
+            $payments = array_column(Payment::whereIn('id', $request->payments)->get(['method'])->toArray(), 'method');
+        }
+        
+        // 検索条件に合致するジャンルを取得
+        $genres = '';
+        if (!empty($request->genres)) {
+            $genres = array_column(Genre::whereIn('id', $request->genres)->get(['name'])->toArray(), 'name');
         }
 
         $businessdays = $request->businessdays;
@@ -43,7 +57,7 @@ class SearchController extends Controller
                             ->CouponFilter($request->coupon)
                             ->GenresFilter($request->genres)
                             ->Paginate($display_count);
-        
-        dd('detailsearch', $request, 'stores', $search_stores); // 開発時に消す
+
+        return view('search.detailsearch', compact('payments', 'genres', 'search_stores'));
     }
 }

@@ -11,7 +11,7 @@
     <div id="detail-search-options" class="hidden">
         <label id="detail-search-options_freeword" class="border-l-4 border-pink-400 pl-2">
             フリーワード
-            <input type="text" name="freeword" placeholder="Enjoyat食堂" class="mt-4 w-full">
+            <input type="text" name="freeword" placeholder="Enjoyat食堂" class="mt-4 w-full" maxlength="255">
         </label>
         <div class="h-4"></div> {{-- スペース用 --}}
         <label id="detail-search-options_freeword" class="border-l-4 border-pink-400 pl-2">

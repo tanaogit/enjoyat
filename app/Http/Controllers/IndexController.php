@@ -39,8 +39,6 @@ class IndexController extends Controller
     /**
      * 最新店舗一覧表示
      * トップページの店舗最新順表示からもっと見るを選択したとき
-     *
-     * @return array $latests
      */
     public function latests()
     {
@@ -60,8 +58,6 @@ class IndexController extends Controller
     /**
      * 評価の高い店舗一覧表示
      * トップページの評価の高い店舗順表示からもっと見るを選択したとき
-     *
-     * @return array $evaluations
      */
     public function evaluations()
     {
@@ -81,8 +77,6 @@ class IndexController extends Controller
     /**
      * 注目されているサブスク一覧表示
      * トップページの注目されているサブスク順表示からもっと見るを選択したとき
-     *
-     * @return array $bookmarks
      */
     public function bookmarks()
     {
