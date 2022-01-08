@@ -9,8 +9,6 @@
         {{-- メールアドレスで新規登録 --}}
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>メールアドレスで新規登録</h1>
-            <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')" />
 
             <form method="POST" action="{{ route('owner.register') }}" id="register-form">
                 @csrf
