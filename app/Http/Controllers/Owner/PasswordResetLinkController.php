@@ -40,9 +40,12 @@ class PasswordResetLinkController extends Controller
         );
 
         //送信結果
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __('passwords.owner')]);
+        if ($status === Password::RESET_LINK_SENT) {
+            return back()->with('status', __($status));
+        } elseif ($status === 'passwords.user') {
+            return back()->withInput($request->only('email'))->withErrors(['email' => __('passwords.owner')]);
+        } else {
+            return back()->withInput($request->only('email'))->withErrors(['email' => __($status)]);
+        }
     }
 }
