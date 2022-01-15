@@ -4,9 +4,6 @@
         {{ $formatService->getTitleForAccess(request()->pref, request()->line, request()->station) }} - Enjoyat
     </x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 簡易検索結果一覧 --}}
     <div class="w-3/4 mx-auto py-8 md:py-12">
         <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">
@@ -49,14 +46,4 @@
             </div>
         @endif
     </div>
-
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
-
-    <x-slot name="jsFile">
-        <script src="{{ mix('js/search/simplesearch.js') }}"></script>
-    </x-slot>
 </x-pages.template>

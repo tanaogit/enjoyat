@@ -1,9 +1,6 @@
 <x-pages.template>
     <x-slot name="title">ユーザーログイン - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- パスワードリセットに成功した時に表示するダイアログ --}}
     @if (!empty(session('status')))
         <div id="password-reset-dialog">
@@ -12,7 +9,7 @@
     @endif
 
     {{-- ログインフォーム --}}
-    <div class="lg:flex lg:justify-around mt-6 lg:mt-12 w-4/5 mx-auto">
+    <div class="lg:flex lg:justify-around mt-6 lg:mt-12 mb-6 lg:mb-12 w-4/5 mx-auto">
         {{-- メールアドレスでログイン --}}
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>メールアドレスでログイン</h1>
@@ -82,11 +79,6 @@
                 <div class="text-red-500 text-sm font-semibold mt-5">※ {{ $message }}</div>
             @enderror
         </div>
-    </div>
-
-    {{-- フッター --}}
-    <div class="mt-6 lg:mt-12">
-        <x-organisms.footer />
     </div>
 
     <x-slot name="jsFile">

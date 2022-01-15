@@ -43,11 +43,6 @@ $(function() {
         ],
     });
 
-    // ハンバーガーメニュー開閉操作
-    $('#pagesTemplateHumburgerMenus').on('click', function() {
-        $('#pagesTemplateSpMenus').toggleClass('hidden');
-    });
-
     // メール送信ボタン押下時にローディングアイコンを表示
     $('#send-main-button').on('click', function() {
         $('#sending-dialog').dialog('open');

@@ -1,11 +1,8 @@
 <x-pages.template>
     <x-slot name="title">ユーザーパスワードリセット - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- パスワードリセットフォーム --}}
-    <div class="lg:flex lg:justify-around mt-8 lg:mt-12 w-4/5 mx-auto">
+    <div class="lg:flex lg:justify-around mt-8 lg:mt-12 mb-24 w-4/5 mx-auto">
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 id="password-reset-heading" class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>パスワードリセット</h1>
             @error('token')
@@ -58,11 +55,6 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    {{-- フッター --}}
-    <div class="mt-24 lg:mt-24">
-        <x-organisms.footer />
     </div>
 
     <x-slot name="jsFile">

@@ -1,9 +1,6 @@
 <x-pages.template>
     <x-slot name="title">Not Found - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     <div style="max-width: 80%" class="mx-auto text-center my-20">
         <h1 class="font-mono text-pink-400 text-9xl">404</h1>
         <p class="mt-9 md:text-lg leading-6 md:leading-8">
@@ -16,6 +13,4 @@
         </div>
     </div>
 
-    {{-- フッター --}}
-    <x-organisms.footer />
 </x-pages.template>

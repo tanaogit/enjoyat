@@ -1,4 +1,4 @@
-{{-- 主にトップページ以下認証なしで閲覧できるページに用いる --}}
+{{-- 主にユーザーとしてログイン後に閲覧できるページに用いる --}}
 {{-- ヘッダー及びフッターなどは固定 --}}
 @props(['title' => 'Enjoyat', 'style' => '', 'jsFile' => ''])
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     </head>
     <body class="antialiased">
         {{-- ヘッダー --}}
-        <x-organisms.header />
+        <x-organisms.user.header />
 
         {{-- 各ページごとの内容 --}}
         {{ $slot }}
@@ -31,7 +31,7 @@
         <x-organisms.footer />
 
         {{-- ヘッダーで用いられるJSファイル --}}
-        <script src="{{ mix('js/components/organisms/header.js') }}"></script>
+        <script src="{{ mix('js/components/organisms/user/header.js') }}"></script>
         {{-- そのファイル独自のJSファイルの読み込み --}}
         {{ $jsFile }}
         {{-- スクロールボタンで用いられるJSファイル --}}

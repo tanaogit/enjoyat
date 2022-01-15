@@ -22,8 +22,21 @@ glob.sync('resources/js/user/*.js').map(function(file) {
 glob.sync('resources/js/owner/*.js').map(function(file) {
     mix.js(file, 'public/js/owner').version()
 });
-glob.sync('resources/js/search/*.js').map(function(file) {
-    mix.js(file, 'public/js/search').version()
+// components以下のファイル
+glob.sync('resources/js/components/atoms/buttons/*.js').map(function(file) {
+    mix.js(file, 'public/js/components/atoms/buttons').version()
+});
+glob.sync('resources/js/components/molecules/*.js').map(function(file) {
+    mix.js(file, 'public/js/components/molecules').version()
+});
+glob.sync('resources/js/components/organisms/*.js').map(function(file) {
+    mix.js(file, 'public/js/components/organisms').version()
+});
+glob.sync('resources/js/components/organisms/owner/*.js').map(function(file) {
+    mix.js(file, 'public/js/components/organisms/owner').version()
+});
+glob.sync('resources/js/components/organisms/user/*.js').map(function(file) {
+    mix.js(file, 'public/js/components/organisms/user').version()
 });
 
 mix

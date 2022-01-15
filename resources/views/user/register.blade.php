@@ -1,11 +1,8 @@
 <x-pages.template>
     <x-slot name="title">ユーザー新規登録 - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 新規登録フォーム --}}
-    <div class="lg:flex lg:justify-around mt-6 lg:mt-12 w-4/5 mx-auto">
+    <div class="lg:flex lg:justify-around mt-6 lg:mt-12 mb-6 lg:mb-12 w-4/5 mx-auto">
         {{-- メールアドレスで新規登録 --}}
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 class="font-bold"><span class="border-l-4 border-pink-400 pl-2"></span>メールアドレスで新規登録</h1>
@@ -85,11 +82,6 @@
                 <p class="w-4/5">Googleで新規登録</p>
             </a>
         </div>
-    </div>
-
-    {{-- フッター --}}
-    <div class="mt-6 lg:mt-12">
-        <x-organisms.footer />
     </div>
 
     <x-slot name="jsFile">

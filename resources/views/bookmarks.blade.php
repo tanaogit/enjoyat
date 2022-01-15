@@ -1,9 +1,6 @@
 <x-pages.template>
     <x-slot name="title">注目のサブスク一覧 - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 注目のサブスク一覧 --}}
     <div class="w-3/4 mx-auto py-8 md:py-12">
         <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">注目のサブスク一覧</h2>
@@ -35,14 +32,4 @@
             {{ $bookmarks->links() }}
         </div>
     </div>
-
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
-
-    <x-slot name="jsFile">
-        <script src="{{ mix('js/bookmarks.js') }}"></script>
-    </x-slot>
 </x-pages.template>
