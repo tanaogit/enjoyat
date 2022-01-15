@@ -45,7 +45,10 @@ $(function() {
 
     // メール送信ボタン押下時にローディングアイコンを表示
     $('#send-main-button').on('click', function() {
-        $('#sending-dialog').dialog('open');
+        // 送信中の場合
+        if ($('#email:valid').length) {
+            $('#sending-dialog').dialog('open');
+        }
     });
 
     // バリデーション時に該当の入力箇所に色をつける
