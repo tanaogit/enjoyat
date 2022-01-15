@@ -1,9 +1,6 @@
 <x-pages.template>
     <x-slot name="title">評価の高い店舗一覧 - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 評価の高い店舗一覧 --}}
     <div class="w-3/4 mx-auto py-8 md:py-12">
         <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">評価の高い店舗一覧</h2>
@@ -33,14 +30,4 @@
             {{ $evaluations->links() }}
         </div>
     </div>
-
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
-
-    <x-slot name="jsFile">
-        <script src="{{ mix('js/evaluations.js') }}"></script>
-    </x-slot>
 </x-pages.template>

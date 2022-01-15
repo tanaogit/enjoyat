@@ -1,9 +1,4 @@
 $(function() {
-    // ハンバーガーメニュー開閉操作
-    $('#pagesTemplateHumburgerMenus').on('click', function() {
-        $('#pagesTemplateSpMenus').toggleClass('hidden');
-    });
-
     // パスワード表示・非表示処理
     $('#password-eye').on('click', function() {
         if ($(this).hasClass('fa-eye')) {

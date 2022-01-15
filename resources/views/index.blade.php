@@ -1,9 +1,6 @@
 <x-pages.template>
     <x-slot name="title">Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 簡易検索欄 --}}
     <div class="w-3/4 py-8 md:py-12 mx-auto">
         <x-organisms.simple-search-panel :genres="$genres" :payments="$payments" />
@@ -23,12 +20,6 @@
     <div class="w-3/4 mx-auto">
         <x-organisms.bookmark_products :bookmarks="$bookmarks" />
     </div>
-
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
 
     {{-- デバイス情報 --}}
     <input type="hidden" id="browser" value={{ $browser }}>

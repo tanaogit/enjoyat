@@ -2,9 +2,6 @@
 <x-pages.template>
     <x-slot name="title">ご指定の条件に合う店舗一覧 - Enjoyat</x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- 詳細検索結果一覧 --}}
     <div class="w-3/4 mx-auto py-8 md:py-12">
         <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2 mb-2">ご指定の条件に合う店舗</h2>
@@ -70,14 +67,4 @@
             </div>
         @endif
     </div>
-
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
-
-    <x-slot name="jsFile">
-        <script src="{{ mix('js/search/detailsearch.js') }}"></script>
-    </x-slot>
 </x-pages.template>

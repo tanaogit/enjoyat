@@ -10,11 +10,8 @@
         </style>
     </x-slot>
 
-    {{-- ヘッダー --}}
-    <x-organisms.header />
-
     {{-- パスワードリセット用のメール送信フォーム --}}
-    <div class="mt-12 md:mt-20 w-4/5 mx-auto">
+    <div class="mt-12 md:mt-20 mb-52 md:mb-36 w-4/5 mx-auto">
         <div class="select-none lg:w-5/12 max-w-md mx-auto">
             <h1 class="font-bold">
                 <span class="border-l-4 border-pink-400 pl-2"></span>パスワードリセット用のメール送信
@@ -58,13 +55,7 @@
         </div>
     </div>
 
-    {{-- フッター --}}
-    <div class="mt-52 md:mt-36">
-        <x-organisms.footer />
-    </div>
-
     <x-slot name="jsFile">
         <script src="{{ mix('js/user/forgot-password.js') }}"></script>
     </x-slot>
 </x-pages.template>
-

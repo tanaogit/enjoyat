@@ -1,8 +1,5 @@
-<x-pages.template>
+<x-pages.user.template>
     <x-slot name="title">ユーザーのダッシュボード - Enjoyat</x-slot>
-
-    {{-- ヘッダー --}}
-    <x-organisms.user.header />
 
     {{-- ログアウト確認ダイアログ --}}
     <div id="logout-confirm-dialog">
@@ -11,16 +8,7 @@
         </div>
     </div>
 
-    {{-- ページ上部に戻るボタン --}}
-    <x-atoms.buttons.scroll-top-button />
-
-    {{-- フッター --}}
-    <x-organisms.footer />
-
-    {{-- デバイス情報 --}}
-    {{-- <input type="hidden" id="browser" value={{ $browser }}> --}}
-
     <x-slot name="jsFile">
         <script src="{{ mix('js/user/index.js') }}"></script>
     </x-slot>
-</x-pages.template>
+</x-pages.user.template>

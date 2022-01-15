@@ -1,9 +1,5 @@
+// スクロールボタンに関する処理
 $(function() {
-    // ハンバーガーメニュー開閉操作
-    $('#pagesTemplateHumburgerMenus').on('click', function() {
-        $('#pagesTemplateSpMenus').toggleClass('hidden');
-    });
-
     // ページ上部に戻るボタン
     const scrollTopButton = $('#scroll-top-button');
 

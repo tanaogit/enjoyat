@@ -12,7 +12,7 @@
         </div>
     </div>
 </header>
-{{-- SP表示におけるメニュー(ハンバーガーメニュークリック時に表示) --}}
+{{-- SP表示におけるメニュー(ハンバーガーメニュークリック時にヘッダー下に表示) --}}
 <div id="pagesTemplateSpMenus" class="hidden bg-gray-200" style="height: 100px">
     <ul class="text-center">
         <li class="hover:bg-gray-300">
