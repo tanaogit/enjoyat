@@ -1,16 +1,7 @@
-<x-pages.template>
-    <x-slot name="title">Not Found - Enjoyat</x-slot>
-
-    <div style="max-width: 80%" class="mx-auto text-center my-20">
-        <h1 class="font-mono text-pink-400 text-9xl">404</h1>
-        <p class="mt-9 md:text-lg leading-6 md:leading-8">
-            お探しのページは見つかりませんでした。<br>
-            一時的にアクセスできない状況にあるか、<br>
-            移動もしくは削除された可能性があります。
-        </p>
-        <div class="mt-16 md:mt-14 mb-8">
-            <x-atoms.buttons.normal-button url="{{ route('index') }}" content="トップページに戻る" />
-        </div>
-    </div>
-
-</x-pages.template>
+<x-templates.error title="Not Found" statusCode="404">
+    <x-slot name="errorText">
+        お探しのページは見つかりませんでした。<br>
+        一時的にアクセスできない状況にあるか、<br>
+        移動もしくは削除された可能性があります。
+    </x-slot>
+</x-templates.error>

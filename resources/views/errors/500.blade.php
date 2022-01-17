@@ -1,5 +1,8 @@
-@extends('errors::minimal')
-
-@section('title', __('Server Error'))
-@section('code', '500')
-@section('message', __('Server Error'))
+<x-templates.error title="Internal Server Error" statusCode="500">
+    <x-slot name="errorText">
+        指定されたページは表示できませんでした。<br>
+        現在メンテナンス中であるか、<br>
+        アクセスが集中している可能性があります。<br>
+        時間をおいて再度アクセスいただくか、<br>お手数ですが、<a href="" class="underline">お問い合わせフォーム</a>より<br class="sm:hidden">お問い合わせください。
+    </x-slot>
+</x-templates.error>
