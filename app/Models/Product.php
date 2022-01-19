@@ -25,6 +25,11 @@ class Product extends Model
         'store_id',
     ];
 
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
     public function coupons()
     {
         return $this->belongsToMany(Coupon::class);
