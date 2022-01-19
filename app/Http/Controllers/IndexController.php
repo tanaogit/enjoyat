@@ -17,6 +17,7 @@ class IndexController extends Controller
         // ブラウザがsafariの場合のみアクセス元のブラウザを取得(SPは除外)
         $browser = is_tablet_pc_safari() ? 'safari' : '';
 
+        $display_count = 0;
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
             $display_count = 3;
         } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
@@ -42,6 +43,7 @@ class IndexController extends Controller
      */
     public function latests()
     {
+        $display_count = 0;
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
             $display_count = 6;
         } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
@@ -50,7 +52,7 @@ class IndexController extends Controller
             $display_count = 18;
         }
 
-        $latests = Store::latest()->Paginate($display_count);
+        $latests = Store::latest()->Paginate($display_count)->withQueryString();
 
         return view('latests', compact('latests'));
     }
@@ -61,6 +63,7 @@ class IndexController extends Controller
      */
     public function evaluations()
     {
+        $display_count = 0;
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
             $display_count = 6;
         } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
@@ -69,7 +72,7 @@ class IndexController extends Controller
             $display_count = 18;
         }
 
-        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->Paginate($display_count);
+        $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->Paginate($display_count)->withQueryString();
 
         return view('evaluations', compact('evaluations'));
     }
@@ -80,6 +83,7 @@ class IndexController extends Controller
      */
     public function bookmarks()
     {
+        $display_count = 0;
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
             $display_count = 6;
         } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
@@ -88,7 +92,7 @@ class IndexController extends Controller
             $display_count = 18;
         }
 
-        $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->Paginate($display_count);
+        $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->Paginate($display_count)->withQueryString();
 
         return view('bookmarks', compact('bookmarks'));
     }
@@ -99,7 +103,7 @@ class IndexController extends Controller
      */
     public function storedetail(Request $request)
     {
-        $store = Store::find($request->id);
+        $store = Store::with(['products', 'holidays', 'accesses', 'storeimages', 'posts', 'payments'])->findOrFail($request->id);
 
         dd('storedetail', $request, 'store', $store); // 開発時に消す
     }
@@ -110,7 +114,7 @@ class IndexController extends Controller
      */
     public function productdetail(Request $request)
     {
-        $product = Product::find($request->id);
+        $product = Product::with(['store', 'coupons', 'genres'])->findOrFail($request->id);
 
         dd('productdetail', $request, 'product', $product); // 開発時に消す
     }
