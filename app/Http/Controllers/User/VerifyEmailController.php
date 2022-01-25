@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 class VerifyEmailController extends Controller
 {
     /**
-     * Mark the authenticated user's email address as verified.
+     * 認証されたユーザーの電子メールアドレスを確認済みとしてマークします。
      *
      * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -18,13 +18,13 @@ class VerifyEmailController extends Controller
     public function __invoke(EmailVerificationRequest $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(RouteServiceProvider::USER_HOME.'?verified=1');
+            return redirect()->intended(RouteServiceProvider::USER_HOME);
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect()->intended(RouteServiceProvider::USER_HOME.'?verified=1');
+        return redirect()->intended(RouteServiceProvider::USER_HOME);
     }
 }

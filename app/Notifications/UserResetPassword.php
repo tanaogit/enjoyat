@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 
 class UserResetPassword extends Notification
 {
-    public $token;
+    public $token = "";
 
     public function __construct($token)
     {
@@ -26,7 +26,7 @@ class UserResetPassword extends Notification
     }
 
     /**
-     * メール作成
+     * 通知メール作成
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
@@ -41,16 +41,17 @@ class UserResetPassword extends Notification
         return $this->buildMailMessage($notifiable, $url);
     }
 
+    /**
+     * メッセージを作成
+     *
+     * @param mixed $notifiable
+     * @param string $url
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
     protected function buildMailMessage($notifiable, $url)
     {
         return (new MailMessage)
             ->subject('【Enjoyat】パスワードリセットのご案内')
-            ->greeting($notifiable->username . 'さんのパスワードリセット申請を受け付けました。')
-            ->line('以下「パスワードリセット」ボタンをクリックして新しいパスワードをご登録ください。')
-            ->line('パスワードリセットの申請に心当たりがない場合は、以降の対応は不要となりますのでメールの破棄をお願いいたします。')
-            ->action('パスワードリセット', $url)
-            ->line('パスワードリセットの有効期限は60分間となりますので期限内にご登録を完了してください。')
-            ->line('不明点等ございましたら以下のお問い合わせフォームよりご連絡ください。')
-            ->line('※送信専用のメールアドレスのため直接の返信はできません。');
+            ->markdown('vendor.notifications.passwordreset-email', ['username' => $notifiable->username, 'url' => $url]);
     }
 }

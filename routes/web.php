@@ -33,11 +33,9 @@ Route::get('/oauth/social-login/{provider}/callback', OAuthProviderCallbackContr
 
 //ユーザー認証および専用ページのルーティング
 Route::prefix('user')->name('user.')->group(function() {
-
-    //専用トップページ
     Route::get('/', function () {
         return view('user.index');
-    })->middleware(['auth:users'])->name('index');
+    })->middleware(['auth:users', 'verified:user.verification.notice'])->name('index');
 
     //ユーザー認証
     require __DIR__.'/auth/user.php';
@@ -45,11 +43,9 @@ Route::prefix('user')->name('user.')->group(function() {
 
 //オーナー認証および専用ページのルーティング
 Route::prefix('owner')->name('owner.')->group(function() {
-
-    //専用トップページ
     Route::get('/', function () {
         return view('owner.index');
-    })->middleware(['auth:owners'])->name('index');
+    })->middleware(['auth:owners', 'verified:owner.verification.notice'])->name('index');
 
     //オーナー認証
     require __DIR__.'/auth/owner.php';
