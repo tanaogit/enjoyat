@@ -16,6 +16,5 @@ $(function() {
     scrollTopButton.on('click', function() {
         // 0.5秒かけてページ上部へ戻る
         $('body, html').animate({scrollTop: 0}, 500);
-        return false;
     });
 });
