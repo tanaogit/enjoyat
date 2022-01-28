@@ -18,11 +18,18 @@
         {{ $style }}
     </head>
     <body class="antialiased">
-        {{-- ヘッダー --}}
-        <x-organisms.user.header />
+        <div class="flex justify-between">
+            {{-- PC表示におけるメニュー --}}
+            <x-organisms.user.pc-sidebar class="w-1/4" style="min-width: 290px" />
 
-        {{-- 各ページごとの内容 --}}
-        {{ $slot }}
+            <div>
+                {{-- ヘッダー --}}
+                <x-organisms.user.header />
+
+                {{-- 各ページごとの内容 --}}
+                {{ $slot }}
+            </div>
+        </div>
 
         {{-- ページ上部に戻るボタン --}}
         <x-atoms.buttons.scroll-top-button />
