@@ -14,6 +14,7 @@ use App\Models\OwnerOauthProvider;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class OAuthProviderCallbackController extends Controller
 {
@@ -103,6 +104,10 @@ class OAuthProviderCallbackController extends Controller
                 'social_login' => true,
             ]);
             
+            $user->forceFill([
+                'email_verified_at' => Carbon::now(),
+            ])->save();
+            
             $user->provider()->create([
                 'name' => $provider,
                 'provider_id' => $provider_user->id,
@@ -145,6 +150,10 @@ class OAuthProviderCallbackController extends Controller
                 'password' => Hash::make(Str::random(20)),
                 'social_login' => true,
             ]);
+
+            $owner->forceFill([
+                'email_verified_at' => Carbon::now(),
+            ])->save();
             
             $owner->provider()->create([
                 'name' => $provider,
