@@ -103,9 +103,39 @@ class IndexController extends Controller
      */
     public function storedetail(Request $request)
     {
-        $store = Store::with(['products', 'holidays', 'accesses', 'storeimages', 'posts', 'payments'])->findOrFail($request->id);
+        $products_count    = 3;
+        $storeimages_count = 0;
+        if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
+            $storeimages_count = 6;
+        } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
+            $products_count    = 4;
+            $storeimages_count = 8;
+        } else {
+            $storeimages_count = 18;
+        }
 
-        dd('storedetail', $request, 'store', $store); // 開発時に消す
+        // holidaysテーブルから取得するカラム群
+        $holidaysColumns = 'holidays:store_id,sunday,monday,tuesday,wednesday,thursday,friday,saturday';
+
+        $store = Store::with([
+                'products' => function($query) use($products_count) {
+                    $query->latest()->limit($products_count);
+                },
+                'accesses' => function($query) {
+                    $query->orderBy('walking_time');
+                },
+                'storeimages' => function($query) use($storeimages_count) {
+                    $query->latest()->limit($storeimages_count);
+                },
+                'posts' => function($query) {
+                    $query->latest()->limit(3);
+                },
+                'payments',
+                $holidaysColumns,
+            ])
+            ->findOrFail($request->id);
+
+        return view('storedetail', compact('store'));
     }
 
     /**
@@ -116,6 +146,6 @@ class IndexController extends Controller
     {
         $product = Product::with(['store', 'coupons', 'genres'])->findOrFail($request->id);
 
-        dd('productdetail', $request, 'product', $product); // 開発時に消す
+        return view('productdetail', compact('product'));
     }
 }

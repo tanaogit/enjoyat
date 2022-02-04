@@ -13,7 +13,7 @@
                     <h3 class="text-gray-900 text-xl truncate">{{ $evaluation->name }}</h3>
                     <div class="flex justify-between mt-1">
                         <p class="text-md">{{ $evaluation->tel }}</p>
-                        <span class="text-md"><i class="text-yellow-500 fas fa-star"></i> {{ $evaluation->total_eva_avg }}</span>
+                        <span class="text-md"><i class="text-yellow-500 fas fa-star"></i> {{ number_format($evaluation->total_eva_avg, 1) }}</span>
                     </div>
                 </div>
             </a>

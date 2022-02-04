@@ -89,4 +89,38 @@ class FormatService
 
         return $text;
     }
+
+    /**
+     * 定休日のカラムを取得
+     *
+     * @param  array $record
+     * @return array $holidays
+     */
+    public function getHolidayColumns($record)
+    {
+        // 休日の曜日の配列
+        $holidays = [];
+
+        // 配列でないものが来たらとりあえず空の配列を返す
+        if (!is_array($record)) return $holidays;
+
+        $dayArray = [
+            'sunday',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+        ];
+
+        foreach ($record as $column => $value) {
+            if (!in_array($column, $dayArray, true)) continue;
+            if ($value === 1) {
+                $holidays[] = $column;
+            }
+        }
+
+        return $holidays;
+    }
 }
