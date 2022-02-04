@@ -28,8 +28,8 @@
         <div class="py-4 md:py-8">
             <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
                 <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">お店の紹介</h2>
-                <p id="store-introduction" class="mt-4 md:mt-6 lg:mt-8" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;">{{ $store->introduction }}</p>
-                <button id="store-introduction-button" type="button" class="mt-1 md:mt-2 text-blue-600">もっと見る</button>
+                <p id="store-introduction" class="mt-4 md:mt-6 lg:mt-8">{{ $store->introduction }}</p>
+                <button id="store-introduction-button" type="button" class="mt-1 md:mt-2 text-blue-600 hidden">もっと見る</button>
             </div>
         </div>
     @endif
