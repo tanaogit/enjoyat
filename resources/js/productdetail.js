@@ -1,6 +1,6 @@
 $(function() {
-    // 「店舗の紹介」の文章の文字数を取得
-    const textLength = $('#store-introduction').text().length;
+    // 「サブスクの紹介」の文章の文字数を取得
+    const textLength = $('#product-description').text().length;
     // 基準となる文字数
     let maxtextLength = 150;
     if (window.innerWidth > 1024) {
@@ -12,21 +12,21 @@ $(function() {
     }
     // 基準となる文字数を超えたら三点リーダーで隠す
     if (textLength > maxtextLength) {
-        $('#store-introduction').css({
+        $('#product-description').css({
             'display': '-webkit-box',
             '-webkit-box-orient': 'vertical',
             '-webkit-line-clamp': '4',
             'overflow': 'hidden',
         });
-        $('#store-introduction-button').show();
+        $('#product-description-button').show();
     }
 
     // 「もっと見る」ボタンクリック時
-    $('#store-introduction-button').on('click', function() {
+    $('#product-description-button').on('click', function() {
         // テキストが省略されている時(念のために入れている)
-        if ($('#store-introduction').attr('style')) {
+        if ($('#product-description').attr('style')) {
             $(this).remove(); // ボタンを削除
-            $('#store-introduction').removeAttr('style'); // 全文表示
+            $('#product-description').removeAttr('style'); // 全文表示
         }
     });
 });

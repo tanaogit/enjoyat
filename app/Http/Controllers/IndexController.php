@@ -144,7 +144,7 @@ class IndexController extends Controller
      */
     public function productdetail(Request $request)
     {
-        $product = Product::with(['store', 'coupons', 'genres'])->findOrFail($request->id);
+        $product = Product::with(['store:id,name', 'coupons', 'genres:name'])->findOrFail($request->id);
 
         return view('productdetail', compact('product'));
     }
