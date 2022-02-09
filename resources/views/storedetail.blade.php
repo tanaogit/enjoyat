@@ -7,10 +7,10 @@
 
     {{-- 店舗名と最寄りの駅など --}}
     <div class="mx-auto py-4 md:py-8 lg:py-10 w-11/12 md:w-4/5 lg:w-3/4">
-        <h1 class="font-bold text-2xl truncate">{{ $store->name }}</h1>
+        <h1 class="font-bold text-3xl">{{ $store->name }}</h1>
         @if ($store->accesses()->exists() && !empty($store->accesses->first()->prefecture))
-            <p class="mt-1 md:pt-2 lg:pt-4">
-                <i class="fas fa-map-marker-alt"></i>
+            <p class="pt-1 md:pt-2 lg:pt-4">
+                <i class="fas fa-map-marker-alt text-red-500"></i>
                 {{ $store->accesses->first()->prefecture }}
                 {{ $store->accesses->first()->line }}
                 @if (!empty($store->accesses->first()->station_name))
@@ -27,7 +27,7 @@
     @if (!empty($store->introduction))
         <div class="py-4 md:py-8">
             <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
-                <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">お店の紹介</h2>
+                <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">店舗の紹介</h2>
                 <p id="store-introduction" class="mt-4 md:mt-6 lg:mt-8">{{ $store->introduction }}</p>
                 <button id="store-introduction-button" type="button" class="mt-1 md:mt-2 text-blue-600 hidden">もっと見る</button>
             </div>
