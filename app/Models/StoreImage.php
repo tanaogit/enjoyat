@@ -21,4 +21,14 @@ class StoreImage extends Model
         'category',
         'store_id',
     ];
+
+    /**
+     * categoryカラムに入りうる値かどうかを判定
+     *
+     * @return bool
+     */
+    public static function inCategoryArray($category)
+    {
+        return in_array($category, ['foods', 'drinks', 'others'], true);
+    }
 }

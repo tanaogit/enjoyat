@@ -22,6 +22,9 @@ glob.sync('resources/js/user/*.js').map(function(file) {
 glob.sync('resources/js/owner/*.js').map(function(file) {
     mix.js(file, 'public/js/owner').version()
 });
+glob.sync('resources/js/storedetail/*.js').map(function(file) {
+    mix.js(file, 'public/js/storedetail').version()
+});
 // components以下のファイル
 glob.sync('resources/js/components/atoms/buttons/*.js').map(function(file) {
     mix.js(file, 'public/js/components/atoms/buttons').version()
