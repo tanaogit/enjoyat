@@ -39,7 +39,11 @@
         <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
             <div class="flex justify-between">
                 <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">写真</h2>
-                <a href="#" class="text-blue-600">すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i></a> {{-- リンク先を変える --}}
+                @if ($store->storeimages()->exists())
+                    <a href="{{ route('storedetail.storeimages', ['id' => $store->id]) }}" class="text-blue-600">
+                        すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i>
+                    </a>
+                @endif
             </div>
             @if ($store->storeimages()->exists())
                 <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-0.5 mt-4 md:mt-6 lg:mt-8">
