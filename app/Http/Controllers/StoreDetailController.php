@@ -36,7 +36,7 @@ class StoreDetailController extends Controller
         // 店舗に基づく写真を最新順に取得
         $storeimages = StoreImage::where('store_id', $store_id)
             ->when(!is_null($category), function($query) use($category) {
-                return $query->categoryFilter($category);
+                return $query->where('category', $category);
             })
             ->latest()
             ->paginate($storeimages_count)

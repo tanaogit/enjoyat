@@ -31,16 +31,4 @@ class StoreImage extends Model
     {
         return in_array($category, ['foods', 'drinks', 'others'], true);
     }
-
-    /**
-     * categoryの条件に合うレコードを取得
-     *
-     * @param  Illuminate\Database\Eloquent\Builder $query
-     * @param  string $category
-     * @return Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeCategoryFilter($query, $category)
-    {
-        return $query->where('category', $category);
-    }
 }
