@@ -16,9 +16,9 @@
                 <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">営業日 : {{ implode(', ', $formatService->getDaysInJapanese(request()->businessdays)) }}</p>
             @endif
             @if (!empty(request()->evaluation))
-                <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">クチコミの評価 : {{ request()->evaluation }}以上</p>
+                <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">口コミの評価 : {{ request()->evaluation }}以上</p>
             @else
-                <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">クチコミの評価 : 指定なし</p>
+                <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">口コミの評価 : 指定なし</p>
             @endif
             @if (!empty($payments))
                 <p class="border-2 border-gray-300 p-2 m-1 rounded-xl">支払い方法 : {{ implode(', ', $payments) }}</p>
