@@ -28,7 +28,7 @@
         </label>
         <div class="h-4"></div> {{-- スペース用 --}}
         <span id="detail-search-options_evaluation" class="border-l-4 border-pink-400 pl-2">
-            クチコミの評価
+            口コミの評価
             <div class="md:flex mt-4">
                 <label>
                     <input type="radio" name="evaluation" value="" class="mr-2" checked>指定なし
