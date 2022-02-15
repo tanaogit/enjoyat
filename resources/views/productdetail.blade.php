@@ -10,7 +10,7 @@
             <h2 class="font-medium truncate" style="max-width: 60%"><i class="fas fa-store-alt text-pink-400"></i> {{ $product->store->name }}</h2>
             <a href="{{ route('index.storedetail', ['id' => $product->store->id]) }}" class="text-blue-500 underline ml-3">店舗を確認する</a>
         </div>
-        <h1 class="font-bold text-3xl truncate pt-1 md:pt-2 lg:pt-4">{{ $product->name }}</h1>
+        <h1 class="font-bold text-3xl pt-1 md:pt-2 lg:pt-4">{{ $product->name }}</h1>
         <p class="pt-1 md:pt-2 lg:pt-4 text-gray-500">
             <i class="fas fa-yen-sign text-yellow-400"></i> {{ $product->price }}円
             @if (!empty($product->unitprice))

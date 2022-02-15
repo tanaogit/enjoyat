@@ -207,7 +207,9 @@
             <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
                 <div class="flex justify-between">
                     <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">最新のサブスク</h2>
-                    <a href="#" class="text-blue-600">すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i></a> {{-- リンク先を変える --}}
+                    <a href="{{ route('storedetail.products', ['id' => $store->id]) }}" class="text-blue-600">
+                        すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i>
+                    </a>
                 </div>
                 <ul class="md:grid md:grid-cols-2 lg:grid-cols-3 md:mt-8 lg:mt-10">
                     @foreach ($store->products as $product)
@@ -221,13 +223,7 @@
                                 <div class="flex justify-between mt-1">
                                     <span class="text-gray-500 text-sm">
                                         {{ $product->price }}円<br>
-                                        @php
-                                            $unitprice = '-';
-                                            if (!empty($product->unitprice)) {
-                                                $unitprice = $product->unitprice;
-                                            }
-                                        @endphp
-                                        (1回あたり{{ $unitprice }}円)
+                                        (1回あたり{{ !empty($product->unitprice) ? $product->unitprice : '-' }}円)
                                     </span>
                                 </div>
                             </div>
