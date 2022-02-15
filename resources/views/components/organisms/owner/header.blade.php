@@ -33,7 +33,6 @@
 </div>
 {{-- アイコンクリック時に表示するメニュー --}}
 <div id="header-owner-icon-menu" class="hidden shadow-2xl bg-white w-2/5 md:w-1/3 -mt-4 ml-auto absolute right-8 z-20">
-    <a href="" class="block px-4 leading-10 hover:text-white hover:bg-gray-400"><i class="fas fa-cog"></i> 設定</a>
     <button id="sp-owner-changeStore-button" type="button" class="block w-full text-left leading-10 hover:text-white hover:bg-gray-400 px-4"><i class="fas fa-exchange-alt"></i> 店舗変更</button>
     <form method="POST" action="{{ route('owner.logout') }}" class="owner-logout-form">
         @csrf
@@ -43,12 +42,12 @@
 
 {{-- 店舗変更ダイアログ --}}
 {{-- 処理ができたらちゃんと作る --}}
-<div id="change-store-dialog">
+<div id="change-store-dialog" class="hidden">
     <p>店舗変更</p>
 </div>
 
 {{-- ログアウト確認ダイアログ --}}
-<div id="logout-confirm-dialog">
+<div id="logout-confirm-dialog" class="hidden">
     <div class="pt-2 pb-4">
         <p>本当にログアウトしてもよろしいですか？</p>
     </div>
