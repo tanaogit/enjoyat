@@ -5,5 +5,5 @@
         {{-- ひとまずcontactのみ(今後増やす方向) --}}
         <li><a href="{{ route('support.contact') }}" class="hover:underline">Contact</a></li>
     </ul>
-    <small class="text-gray-100">© <span id="footer-copyright-year"></span> Enjoyat</small>
+    <small class="text-gray-100">© 2022 Enjoyat</small>
 </footer>
