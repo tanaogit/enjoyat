@@ -3,8 +3,13 @@
 
     <div class="py-8 md:py-12">
         <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
-            <h1 class="text-lg font-bold border-l-4 border-pink-400 pl-2">
-                <a href="{{ route('index.storedetail', ['id' => $store->id]) }}">{{ $store->name }}</a>の写真一覧
+            <h1 class="flex text-lg font-bold border-l-4 border-pink-400 pl-2">
+                <a href="{{ route('index.storedetail', ['id' => $store->id]) }}" class="block truncate" style="max-width: 70%">
+                    {{ $store->name }}
+                </a>
+                <span>
+                    の写真一覧
+                </span>
             </h1>
 
             {{-- カテゴリ選択タブ --}}

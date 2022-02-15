@@ -1,6 +1,6 @@
 @inject('formatService', 'App\View\Services\FormatService') {{-- 表示用に整形するためのservice --}}
 <x-pages.template>
-    <x-slot name="title">{{ $store->name }} - Enjoyat</x-slot>
+    <x-slot name="title">{{ $store->name }} - {{ config('app.name') }}</x-slot>
 
     {{-- 店舗画像 --}}
     <img src="{{ $store->image }}" alt="{{ $store->name }}の画像" class="h-48 md:h-64 w-full object-cover">
@@ -173,18 +173,24 @@
         <div class="mx-auto w-11/12 md:w-4/5 lg:w-3/4">
             <div class="flex justify-between">
                 <h2 class="text-lg font-bold border-l-4 border-pink-400 pl-2">口コミ</h2>
-                <a href="#" class="text-blue-600">すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i></a> {{-- リンク先を変える --}}
+                @if ($store->posts()->exists())
+                    <a href="{{ route('storedetail.posts', ['id' => $store->id]) }}" class="text-blue-600">
+                        すべて見る<i class="fas fa-chevron-right text-gray-500 ml-2 text-sm"></i>
+                    </a>
+                @endif
             </div>
             @if ($store->posts()->exists())
                 @foreach ($store->posts as $post)
                     <div class="mt-4 md:mt-8 lg:mt-10">
-                        <h3 class="truncate font-bold">
-                            {{ $post->title }}
-                            <span class="font-normal"><i class="text-yellow-500 fas fa-star"></i> {{ number_format($post->eva_average, 1) }}</span>
-                        </h3>
+                        <h3 class="truncate font-bold">{{ $post->title }}</h3>
                         {{-- 2行を超える場合は「...」(三点リーダー)で省略 --}}
-                        <p style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;">{{ $post->message }}</p>
-                        <span class="text-gray-500 text-sm">({{ $post->created_at->diffForHumans() }})</span>
+                        <p style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;" class="mt-2 mb-1">
+                            {{ $post->message }}
+                        </p>
+                        <p>
+                            <i class="text-yellow-500 fas fa-star"></i> {{ number_format($post->eva_average, 1) }}
+                            <span class="inline-block text-gray-500 text-sm ml-2">({{ $post->created_at->diffForHumans() }})</span>
+                        </p>
                     </div>
                 @endforeach
             @else
