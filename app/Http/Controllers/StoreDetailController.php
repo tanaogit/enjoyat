@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Product;
 use App\Models\Store;
 use App\Models\StoreImage;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 class StoreDetailController extends Controller
 {
     /**
-     * 店舗に紐づく画像をすべて表示
+     * 店舗に紐づく写真をすべて表示
      * 店舗詳細における写真について「すべて見る」を選択した時
      */
     public function storeimages(Request $request)
@@ -82,5 +83,38 @@ class StoreDetailController extends Controller
         }
 
         return view('storedetail.posts', compact('store', 'posts'));
+    }
+
+    /**
+     * 店舗に紐づくサブスクをすべて表示
+     * 店舗詳細における最新のサブスクについて「すべて見る」を選択した時
+     */
+    public function products(Request $request)
+    {
+        $store_id = $request->id;
+
+        // 1ページあたりのサブスクの最大件数
+        $products_count = 18;
+        if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
+            $products_count = 6;
+        } elseif (is_tablet($_SERVER['HTTP_USER_AGENT'])) {
+            $products_count = 12;
+        }
+
+        // 店舗の情報を取得
+        $store = Store::select('id', 'name')->findOrFail($store_id);
+
+        // 店舗に紐づくサブスクを最新順に取得
+        $products = Product::where('store_id', $store_id)
+            ->latest()
+            ->paginate($products_count, ['id', 'name', 'price', 'unitprice', 'image'])
+            ->withQueryString();
+
+        // 最後のページよりも大きい値が指定されたときは404に飛ばす
+        if ($products->currentPage() > $products->lastPage()) {
+            abort(404);
+        }
+
+        return view('storedetail.products', compact('store', 'products'));
     }
 }

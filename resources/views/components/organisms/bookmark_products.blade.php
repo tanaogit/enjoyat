@@ -13,13 +13,7 @@
                     <div class="flex justify-between mt-1">
                         <span class="text-gray-500 text-sm">
                             {{ $bookmark->price }}円<br>
-                            @php
-                                $unitprice = '-';
-                                if (!empty($bookmark->unitprice)) {
-                                    $unitprice = $bookmark->unitprice;
-                                }
-                            @endphp
-                            (1回あたり{{ $unitprice }}円)
+                            (1回あたり{{ !empty($bookmark->unitprice) ? $bookmark->unitprice : '-' }}円)
                         </span>
                         <span class="text-md font-bold text-red-500">注目</span>
                     </div>
