@@ -28,6 +28,7 @@ Route::get('/search/simplesearch', [SearchController::class, 'simplesearch'])->n
 Route::get('/search/detailsearch', [SearchController::class, 'detailsearch'])->name('search.detailsearch');
 Route::get('/support/contact', [SupportController::class, 'contact'])->name('support.contact');
 Route::get('/storedetail/storeimages', [StoreDetailController::class, 'storeimages'])->name('storedetail.storeimages');
+Route::get('/storedetail/posts', [StoreDetailController::class, 'posts'])->name('storedetail.posts');
 
 Route::get('/oauth/social-login/{provider}/callback', OAuthProviderCallbackController::class)
                 ->where(['provider' => '(twitter|facebook|google)'])
