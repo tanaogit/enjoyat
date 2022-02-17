@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Models\Store;
 use App\Models\Post;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -144,8 +145,20 @@ class IndexController extends Controller
      */
     public function productdetail(Request $request)
     {
-        $product = Product::with(['store:id,name', 'coupons', 'genres:name'])->findOrFail($request->id);
+        $user_id    = Auth::id();
+        $product_id = $request->id;
 
-        return view('productdetail', compact('product'));
+        $category = [];
+        if (!is_null($user_id) && !is_null($product_id)) {
+            $category = DB::table('product_user')
+                ->where('user_id', $user_id)
+                ->where('product_id', $product_id)
+                ->pluck('category')
+                ->toArray();
+        }
+
+        $product = Product::with(['store:id,name', 'coupons', 'genres:name'])->findOrFail($product_id);
+
+        return view('productdetail', compact('category', 'product'));
     }
 }

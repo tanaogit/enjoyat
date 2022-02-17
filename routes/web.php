@@ -3,6 +3,7 @@
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\OAuth\OAuthProviderCallbackController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\StoreDetailController;
 use App\Http\Controllers\SupportController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,8 @@ Route::get('/support/contact', [SupportController::class, 'contact'])->name('sup
 Route::get('/storedetail/storeimages', [StoreDetailController::class, 'storeimages'])->name('storedetail.storeimages');
 Route::get('/storedetail/posts', [StoreDetailController::class, 'posts'])->name('storedetail.posts');
 Route::get('/storedetail/products', [StoreDetailController::class, 'products'])->name('storedetail.products');
+Route::post('/productdetail/executebookmark', [ProductDetailController::class, 'executeBookmark'])->name('productdetail.executeBookmark');
+Route::post('/productdetail/executeregister', [ProductDetailController::class, 'executeRegister'])->name('productdetail.executeRegister');
 
 Route::get('/oauth/social-login/{provider}/callback', OAuthProviderCallbackController::class)
                 ->where(['provider' => '(twitter|facebook|google)'])
