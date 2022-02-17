@@ -1,6 +1,6 @@
 {{-- 主にトップページ以下認証なしで閲覧できるページに用いる --}}
 {{-- ヘッダー及びフッターなどは固定 --}}
-@props(['title' => 'Enjoyat', 'style' => '', 'jsFile' => ''])
+@props(['title' => 'Enjoyat', 'headerOption' => '', 'style' => '', 'jsFile' => ''])
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -13,6 +13,8 @@
         <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" sizes="180x180">
         <link rel="icon" type="image/png" href="{{ asset('android-touch-icon.png') }}" sizes="192x192">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        {{ $headerOption }}
 
         {{-- styleタグを設定する --}}
         {{ $style }}
