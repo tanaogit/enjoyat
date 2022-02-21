@@ -99,23 +99,7 @@
         <p id="user-bookmark-register-dialog-text" class="m-6 md:m-8 lg:m-10"></p>
     </div>
 
-    <div id="guest-bookmark-register-dialog" class="hidden">
-        <div class="pt-4 md:p-8 lg:mx-12">
-            <p>本機能を利用するためにはログインが必要です。</p>
-            <ul class="mx-auto text-center mt-8 w-4/5">
-                <li>
-                    <a href="{{ route('user.login') }}" target="_blank" rel="noopener noreferrer" class="block font-bold bg-pink-400 rounded-lg hover:bg-pink-500 py-4">
-                        ログイン画面へ
-                    </a>
-                </li>
-                <li class="mt-4">
-                    <a href="{{ route('user.register') }}" target="_blank" rel="noopener noreferrer" class="block font-bold border-gray-700 hover:text-gray-100 hover:bg-gray-600 border-2 rounded-lg py-4">
-                        新規登録画面へ
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <x-molecules.guest-login-register-dialog dialogId="guest-bookmark-register-dialog" />
 
     <x-slot name="jsFile">
         <script src="{{ mix('js/productdetail.js') }}"></script>

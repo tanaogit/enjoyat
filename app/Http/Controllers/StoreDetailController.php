@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterPostRequest;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\StoreImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StoreDetailController extends Controller
 {
@@ -83,6 +85,68 @@ class StoreDetailController extends Controller
         }
 
         return view('storedetail.posts', compact('store', 'posts'));
+    }
+
+    /**
+     * 口コミ投稿画面
+     * 店舗詳細における「口コミを投稿する」ボタンクリック時
+     */
+    public function createPost(Request $request)
+    {
+        $user_id  = $request->user_id;
+        $store_id = $request->store_id;
+
+        if (Auth::id() !== (int)$user_id) {
+            abort(403);
+        }
+
+        $store = Store::select('id', 'name')->findOrFail($store_id);
+
+        $post = Post::where('user_id', $user_id)
+            ->where('store_id', $store_id)
+            ->select('id')
+            ->first();
+
+        // すでに投稿済みの場合は403へ
+        if (!empty($post)) {
+            abort(403);
+        }
+
+        return view('storedetail.create-post', compact('store'));
+    }
+
+    /**
+     * 口コミ登録処理
+     * 口コミ投稿ページから口コミを投稿した時
+     */
+    public function registerPost(RegisterPostRequest $request)
+    {
+        $insertRecord = $request->validated();
+        $insertRecord['eva_average'] = $request->eva_average;
+
+        try {
+            $record = Post::create($insertRecord);
+            return redirect()->route('index.storedetail', ['id' => $record->store_id])->with('status', 'success');
+        } catch(\Exception $e) {
+            abort(500);
+        }
+    }
+
+    /**
+     * 口コミ登録処理(ajax)
+     * 店舗詳細における口コミ投稿ダイアログから口コミを投稿した時
+     */
+    public function registerPostAjax(RegisterPostRequest $request)
+    {
+        $insertRecord = $request->validated();
+        $insertRecord['eva_average'] = $request->eva_average;
+
+        try {
+            Post::create($insertRecord);
+            return response()->json(['type' => 'success']);
+        } catch(\Exception $e) {
+            return response()->json(['type' => 'fail']);
+        }
     }
 
     /**

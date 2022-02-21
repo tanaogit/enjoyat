@@ -5,8 +5,49 @@
     {{-- 店舗画像 --}}
     <img src="{{ $store->image }}" alt="{{ $store->name }}の画像" class="h-48 md:h-64 w-full object-cover">
 
+    {{-- 画面幅md以上における写真および口コミ投稿ボタン --}}
+    <div class="hidden md:block mb-4 md:mt-8 lg:mt-10 mx-auto md:w-4/5 lg:w-3/4">
+        <ul class="flex justify-end space-between">
+            {{-- 写真用のボタン --}}
+            <li>
+                @auth('users')
+                    <x-atoms.buttons.unlinked-normal-button buttonId="user-add-storeimages-button" class="px-10 py-4">
+                        <i class="far fa-images mr-1"></i>写真を投稿
+                    </x-atoms.buttons.unlinked-normal-button>
+                @endauth
+                @guest
+                    <x-atoms.buttons.unlinked-normal-button buttonId="guest-add-storeimages-button" class="px-10 py-4">
+                        <i class="far fa-images mr-1"></i>写真を投稿
+                    </x-atoms.buttons.unlinked-normal-button>
+                @endguest
+            </li>
+
+            {{-- 口コミ用のボタン --}}
+            <li id="add-post-button-area" class="ml-4">
+                @auth('users')
+                    @if (empty($post_id))
+                        {{-- まだ投稿をしていない場合 --}}
+                        <x-atoms.buttons.unlinked-normal-button buttonId="user-add-post-button" class="px-8 py-4">
+                            <i class="far fa-comments mr-1"></i>口コミを投稿
+                        </x-atoms.buttons.unlinked-normal-button>
+                    @else
+                        {{-- すでに投稿をしている場合 --}}
+                        <div class="select-none px-8 py-4 font-bold rounded-lg border-2 border-gray-700 text-white bg-gray-600">
+                            <i class="far fa-comments mr-1"></i>口コミ投稿済
+                        </div>
+                    @endif
+                @endauth
+                @guest
+                    <x-atoms.buttons.unlinked-normal-button buttonId="guest-add-post-button" class="px-8 py-4">
+                        <i class="far fa-comments mr-1"></i>口コミを投稿
+                    </x-atoms.buttons.unlinked-normal-button>
+                @endguest
+            </li>
+        </ul>
+    </div>
+
     {{-- 店舗名と最寄りの駅など --}}
-    <div class="mx-auto py-4 md:py-8 lg:py-10 w-11/12 md:w-4/5 lg:w-3/4">
+    <div class="mx-auto py-4 md:py-0 w-11/12 md:w-4/5 lg:w-3/4">
         <h1 class="font-bold text-3xl">{{ $store->name }}</h1>
         @if ($store->accesses()->exists() && !empty($store->accesses->first()->prefecture))
             <p class="pt-1 md:pt-2 lg:pt-4">
@@ -198,6 +239,28 @@
                     <p>口コミはありません。</p>
                 </div>
             @endif
+
+            {{-- 画面幅md未満の時の口コミ投稿ボタン --}}
+            <div class="md:hidden my-8 text-center">
+                @auth('users')
+                    @if (empty($post_id))
+                        {{-- まだ投稿をしていない場合 --}}
+                        <a href="{{ route('storedetail.createPost', ['user_id' => Auth::id(), 'store_id' => $store->id]) }}" class="block font-bold rounded-lg border-2 border-gray-700 hover:text-gray-100 hover:bg-gray-600 px-8 py-4">
+                            <i class="fas fa-plus-circle mr-1"></i>口コミを投稿する
+                        </a>
+                    @else
+                        {{-- すでに投稿をしている場合 --}}
+                        <div class="select-none px-8 py-4 font-bold rounded-lg border-2 border-gray-700 text-white bg-gray-600">
+                            <i class="fas fa-plus-circle mr-1"></i>口コミ投稿済
+                        </div>
+                    @endif
+                @endauth
+                @guest
+                    <x-atoms.buttons.unlinked-normal-button buttonId="sm-guest-add-post-button" class="w-full px-8 py-4">
+                        <i class="fas fa-plus-circle mr-1"></i>口コミを投稿する
+                    </x-atoms.buttons.unlinked-normal-button>
+                @endguest
+            </div>
         </div>
     </div>
 
@@ -231,6 +294,32 @@
                     </li>
                     @endforeach
                 </ul>
+            </div>
+        </div>
+    @endif
+
+    {{-- ログインおよび新規登録用のダイアログ --}}
+    <x-molecules.guest-login-register-dialog dialogId="guest-add-post-dialog" />
+
+    {{-- 口コミ投稿用のダイアログ --}}
+    <div id="user-add-post-dialog" style="min-width: 700px" class="hidden">
+        <div class="pt-8 px-12">
+            <x-molecules.user-add-post-form action="{{ route('storedetail.registerPostAjax') }}" formId="register-post-form" buttonId="register-post-button" userId="{{ Auth::id() }}" storeId="{{ $store->id }}" />
+        </div>
+    </div>
+
+    {{-- 口コミ投稿完了時に表示するダイアログ --}}
+    <div id="user-finish-post-dialog" class="hidden">
+        <div class="py-12 px-16">
+            <p id="user-finish-post-dialog-text"></p>
+        </div>
+    </div>
+
+    {{-- 口コミ投稿画面から口コミを投稿した時 --}}
+    @if (session('status') === 'success')
+        <div id="sm-user-finish-post-dialog">
+            <div class="p-4">
+                <p>口コミを投稿しました。</p>
             </div>
         </div>
     @endif

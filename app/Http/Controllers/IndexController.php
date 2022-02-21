@@ -104,6 +104,9 @@ class IndexController extends Controller
      */
     public function storedetail(Request $request)
     {
+        $user_id  = Auth::id();
+        $store_id = $request->id;
+
         $products_count    = 3;
         $storeimages_count = 0;
         if (is_mobile($_SERVER['HTTP_USER_AGENT'])) {
@@ -114,9 +117,6 @@ class IndexController extends Controller
         } else {
             $storeimages_count = 18;
         }
-
-        // holidaysテーブルから取得するカラム群
-        $holidaysColumns = 'holidays:store_id,sunday,monday,tuesday,wednesday,thursday,friday,saturday';
 
         $store = Store::with([
                 'products' => function($query) use($products_count) {
@@ -132,11 +132,23 @@ class IndexController extends Controller
                     $query->latest()->limit(3);
                 },
                 'payments',
-                $holidaysColumns,
+                'holidays:store_id,sunday,monday,tuesday,wednesday,thursday,friday,saturday',
             ])
-            ->findOrFail($request->id);
+            ->findOrFail($store_id);
 
-        return view('storedetail', compact('store'));
+        // user_idとstore_idからpostsのidを取得
+        $post_id = '';
+        if (!is_null($user_id) && !is_null($store_id)) {
+            // 1つの店舗に対して各ユーザーにつき1投稿まで
+            $post = Post::where('user_id', $user_id)
+                ->where('store_id', $store_id)
+                ->select('id')
+                ->first();
+
+            $post_id = (!empty($post)) ? $post->id : '';
+        }
+
+        return view('storedetail', compact('store', 'post_id'));
     }
 
     /**
