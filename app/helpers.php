@@ -37,19 +37,21 @@ if (! function_exists('is_tablet')) {
     }
 }
 
-/**
- * アクセス元の端末がタブレットまたはPC、ブラウザがsafariの時を検出
- *
- * @return bool
- */
-function is_tablet_pc_safari()
-{
-    // SPの場合
-    if (is_mobile($_SERVER['HTTP_USER_AGENT'])) return false;
+if (! function_exists('is_tablet_pc_safari')) {
+    /**
+     * アクセス元の端末がタブレットまたはPC、ブラウザがsafariの時を検出
+     *
+     * @return bool
+     */
+    function is_tablet_pc_safari()
+    {
+        // SPの場合
+        if (is_mobile($_SERVER['HTTP_USER_AGENT'])) return false;
 
-    // safari以外のタブレットの時
-    if (is_tablet($_SERVER['HTTP_USER_AGENT'])) return false;
+        // safari以外のタブレットの時
+        if (is_tablet($_SERVER['HTTP_USER_AGENT'])) return false;
 
-    // ブラウザがsafariのときtrueの返す
-    return (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') === false);
+        // ブラウザがsafariのときtrueの返す
+        return (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') !== false && strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') === false);
+    }
 }

@@ -31,6 +31,9 @@ Route::get('/support/contact', [SupportController::class, 'contact'])->name('sup
 Route::get('/storedetail/storeimages', [StoreDetailController::class, 'storeimages'])->name('storedetail.storeimages');
 Route::get('/storedetail/posts', [StoreDetailController::class, 'posts'])->name('storedetail.posts');
 Route::get('/storedetail/products', [StoreDetailController::class, 'products'])->name('storedetail.products');
+Route::get('/storedetail/createstoreimages', [StoreDetailController::class, 'createStoreimages'])->middleware(['auth:users'])->name('storedetail.createStoreimages');
+Route::post('/storedetail/registerstoreimages', [StoreDetailController::class, 'registerStoreimages'])->name('storedetail.registerStoreimages');
+Route::post('/storedetail/registerstoreimagesajax', [StoreDetailController::class, 'registerStoreimagesAjax'])->name('storedetail.registerStoreimagesAjax');
 Route::get('/storedetail/createpost', [StoreDetailController::class, 'createPost'])->middleware(['auth:users'])->name('storedetail.createPost');
 Route::post('/storedetail/registerpost', [StoreDetailController::class, 'registerPost'])->name('storedetail.registerPost');
 Route::post('/storedetail/registerpostajax', [StoreDetailController::class, 'registerPostAjax'])->name('storedetail.registerPostAjax');
