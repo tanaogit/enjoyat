@@ -97,6 +97,20 @@
                     <p>登録されている写真はありません。</p>
                 </div>
             @endif
+
+            {{-- 画面幅md未満の時の写真投稿ボタン --}}
+            <div class="md:hidden my-8 text-center">
+                @auth('users')
+                    <a href="{{ route('storedetail.createStoreimages', ['user_id' => Auth::id(), 'store_id' => $store->id]) }}" class="block font-bold rounded-lg border-2 border-gray-700 hover:text-gray-100 hover:bg-gray-600 px-8 py-4">
+                        <i class="fas fa-plus-circle mr-1"></i>写真を投稿する
+                    </a>
+                @endauth
+                @guest
+                    <x-atoms.buttons.unlinked-normal-button buttonId="sm-guest-add-storeimages-button" class="w-full px-8 py-4">
+                        <i class="fas fa-plus-circle mr-1"></i>写真を投稿する
+                    </x-atoms.buttons.unlinked-normal-button>
+                @endguest
+            </div>
         </div>
     </div>
 
@@ -299,7 +313,21 @@
     @endif
 
     {{-- ログインおよび新規登録用のダイアログ --}}
-    <x-molecules.guest-login-register-dialog dialogId="guest-add-post-dialog" />
+    <x-molecules.guest-login-register-dialog dialogId="guest-add-storeimages-post-dialog" />
+
+    {{-- 写真投稿用のダイアログ --}}
+    <div id="user-add-storeimages-dialog" style="min-width: 700px" class="hidden">
+        <div class="pt-8 px-12">
+            <x-molecules.user-add-storeimages-form action="{{ route('storedetail.registerStoreimagesAjax') }}" formId="register-storeimages-form" buttonId="register-storeimages-button" storeId="{{ $store->id }}" />
+        </div>
+    </div>
+
+    {{-- 写真投稿完了時に表示するダイアログ --}}
+    <div id="user-finish-storeimages-dialog" class="hidden">
+        <div class="py-12 px-16">
+            <p id="user-finish-storeimages-dialog-text"></p>
+        </div>
+    </div>
 
     {{-- 口コミ投稿用のダイアログ --}}
     <div id="user-add-post-dialog" style="min-width: 700px" class="hidden">
@@ -315,11 +343,15 @@
         </div>
     </div>
 
-    {{-- 口コミ投稿画面から口コミを投稿した時 --}}
-    @if (session('status') === 'success')
-        <div id="sm-user-finish-post-dialog">
+    {{-- 写真投稿画面または口コミ投稿画面から投稿が成功した時 --}}
+    @if (!empty(session('status')))
+        <div id="sm-user-finish-storeimages-post-dialog">
             <div class="p-4">
-                <p>口コミを投稿しました。</p>
+                @if (session('status') === 'storeimages-success')
+                    <p>写真を投稿しました。</p>
+                @elseif (session('status') === 'post-success')
+                    <p>口コミを投稿しました。</p>
+                @endif
             </div>
         </div>
     @endif
