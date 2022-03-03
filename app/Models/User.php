@@ -44,6 +44,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Product::class)->withPivot('category');
     }
 
+    public function registerProducts()
+    {
+        return $this->belongsToMany(Product::class)->wherePivot('category', 'register')->withTimestamps();
+    }
+
+    public function bookmarkProducts()
+    {
+        return $this->belongsToMany(Product::class)->wherePivot('category', 'bookmark')->withTimestamps();
+    }
+
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
