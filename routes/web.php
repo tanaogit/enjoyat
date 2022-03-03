@@ -6,6 +6,7 @@ use App\Http\Controllers\OAuth\OAuthProviderCallbackController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\StoreDetailController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\User\IndexController as UserIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,12 +47,12 @@ Route::get('/oauth/social-login/{provider}/callback', OAuthProviderCallbackContr
 
 //ユーザー認証および専用ページのルーティング
 Route::prefix('user')->name('user.')->group(function() {
-    Route::get('/', function () {
-        return view('user.index');
-    })->middleware(['auth:users', 'verified:user.verification.notice'])->name('index');
+    Route::get('/', [UserIndexController::class, 'index'])->middleware(['auth:users', 'verified:user.verification.notice'])->name('index');
+    Route::get('/bookmarkProducts', [UserIndexController::class, 'bookmarkProducts'])->middleware(['auth:users', 'verified:user.verification.notice'])->name('bookmarkProducts');
+    Route::get('/registerProducts', [UserIndexController::class, 'registerProducts'])->middleware(['auth:users', 'verified:user.verification.notice'])->name('registerProducts');
+    Route::get('/posts', [UserIndexController::class, 'posts'])->middleware(['auth:users', 'verified:user.verification.notice'])->name('posts');
 
-    //ユーザー認証
-    require __DIR__.'/auth/user.php';
+    require __DIR__.'/auth/user.php'; //認証関連
 });
 
 //オーナー認証および専用ページのルーティング
