@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         $description = $this->faker->boolean(70) ? $this->faker->realtext(rand(10,1000)) : null;
 
         return [
-            'name' => $this->faker->realtext(10),
+            'name' => $this->faker->realtext(rand(10,135)),
             'price' => $price,
             'unitprice' => $price / 4,
             'description' => $description,

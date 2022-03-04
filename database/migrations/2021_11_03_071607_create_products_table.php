@@ -15,11 +15,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('商品名');
+            $table->string('name', 135)->comment('商品名');
             $table->integer('price')->comment('商品価格(税込)');
             $table->integer('unitprice')->nullable()->comment('1回利用時の見込単価');
             $table->text('description')->nullable()->comment('商品説明');
-            $table->string('image')->nullable()->comment('商品画像');
+            $table->string('image')->default("storage/productimages/default.png")->comment('商品画像');
             $table->foreignId('store_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
