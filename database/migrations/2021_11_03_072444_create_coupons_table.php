@@ -17,7 +17,9 @@ class CreateCouponsTable extends Migration
             $table->id();
             $table->string('name', 50)->comment('クーポン名');
             $table->text('description')->comment('クーポン詳細');
-            $table->string('code', 50)->comment('クーポン番号');
+            $table->string('code', 50)->nullable()->comment('クーポン番号');
+            $table->date('start')->nullable()->comment('利用開始日');
+            $table->date('end')->nullable()->comment('利用終了日');
             $table->timestamps();
         });
     }
