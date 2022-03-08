@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Payment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,9 @@ class PaymentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('payments')->insert(['method' => '現金',]);
-        DB::table('payments')->insert(['method' => 'クレジットカード',]);
-        DB::table('payments')->insert(['method' => 'デビットカード',]);
+        Payment::create(['method' => '現金']);
+        Payment::create(['method' => 'クレジットカード']);
+        Payment::create(['method' => 'デビットカード']);
+        Payment::create(['method' => 'PayPay']);
     }
 }

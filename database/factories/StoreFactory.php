@@ -18,11 +18,11 @@ class StoreFactory extends Factory
         $owner_id = Owner::all()->random(1)[0]->id;
 
         return [
-            'name' => $this->faker->realtext(10) . '店',
+            'name' => $this->faker->realtext(rand(10, 139)) . '店',
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => $dt,
             'tel' => $this->faker->phoneNumber(),
-            'introduction' => $this->faker->realtext(50),
+            'introduction' => $this->faker->realtext(rand(10, 150)),
             'zipcode' => $this->faker->postcode(),
             'prefecture' => $this->faker->prefecture(),
             'city' => $this->faker->city(),

@@ -14,8 +14,6 @@ class HolidayFactory extends Factory
      */
     public function definition()
     {
-        $store_id = Store::all()->random(1)[0]->id;
-
         return [
             'sunday' => $this->faker->boolean(50),
             'monday' => $this->faker->boolean(50),
@@ -24,7 +22,6 @@ class HolidayFactory extends Factory
             'thursday' => $this->faker->boolean(50),
             'friday' => $this->faker->boolean(50),
             'saturday' => $this->faker->boolean(50),
-            'store_id' => $store_id,
             'created_at' => $this->faker->dateTimeBetween('-40 years', '-10 years')->format('Y-m-d H:i:s'),
             'updated_at' => $this->faker->dateTimeBetween('-10 years', 'now')->format('Y-m-d H:i:s'),
         ];

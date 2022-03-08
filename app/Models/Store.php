@@ -42,7 +42,7 @@ class Store extends Model
 
     public function holidays()
     {
-        return $this->hasMany(Holiday::class);
+        return $this->hasOne(Holiday::class);
     }
 
     public function accesses()

@@ -15,9 +15,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             Product::factory()
-                ->hasAttached(Genre::all()->random(rand(1, 4)))
+                ->hasAttached(Genre::all()->random(rand(1, 4)), ['created_at' => now(), 'updated_at' => now()])
                 ->create();
         }
     }
