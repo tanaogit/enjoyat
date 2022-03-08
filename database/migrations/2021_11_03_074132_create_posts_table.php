@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->comment('タイトル');
+            $table->string('title', 50)->comment('タイトル');
             $table->text('message')->comment('投稿');
             $table->integer('evaluation1')->comment('評価項目1');
             $table->integer('evaluation2')->comment('評価項目2');

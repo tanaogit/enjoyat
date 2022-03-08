@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genre;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +15,9 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('genres')->insert(['name' => '和食']);
-        DB::table('genres')->insert(['name' => '洋食']);
-        DB::table('genres')->insert(['name' => '中華']);
-        DB::table('genres')->insert(['name' => 'ラーメン']);
+        Genre::create(['name' => '和食']);
+        Genre::create(['name' => '洋食']);
+        Genre::create(['name' => '中華']);
+        Genre::create(['name' => 'ラーメン']);
     }
 }

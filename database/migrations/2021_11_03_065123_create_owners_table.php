@@ -15,10 +15,10 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('氏名');
+            $table->string('name', 60)->comment('氏名');
             $table->string('email')->unique()->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->comment('パスワード');
+            $table->string('password', 64)->comment('パスワード');
             $table->boolean('social_login')->default(0)->comment('ソーシャルログインアカウントか判定');
             $table->rememberToken();
             $table->timestamps();

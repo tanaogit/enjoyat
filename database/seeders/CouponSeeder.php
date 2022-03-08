@@ -15,9 +15,9 @@ class CouponSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 30; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             Coupon::factory()
-                ->hasAttached(Product::all()->random(rand(1, 4)))
+                ->hasAttached(Product::all()->random(rand(1, 4)), ['created_at' => now(), 'updated_at' => now()])
                 ->create();
         }
     }
