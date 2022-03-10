@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\Genre;
 use App\Models\Payment;
 use App\Models\Store;
@@ -34,8 +35,24 @@ class IndexController extends Controller
         $evaluations = Store::addSelect(['total_eva_avg' => Post::select(DB::raw('AVG(eva_average)'))->whereColumn('store_id', 'stores.id')->groupBy('store_id')])->orderByDesc('total_eva_avg')->take($display_count)->get();
         $bookmarks = Product::withCount('bookmarkUsers')->orderByDesc('bookmark_users_count')->take($display_count)->get();
 
+        // ユーザーが認証済の場合、ユーザー登録情報から個別のおすすめ商品を提案
+        $recommend_products = null;
+        if (Auth::guard('users')->check()) {
+            $user = User::findOrFail(Auth::id(), ['id', 'prefecture', 'city']);
+            $genres = $user->genres()->orderBy('id')->get(['id', 'name']);
+
+            // おすすめ商品の検索
+            if (!empty($user->prefecture) && $genres->count() > 0) {
+                $recommend_products = Product::StoreAddressFilter($user->prefecture, $user->city)->GenresFilter($genres->pluck('id')->toArray())->latest()->take($display_count)->get();
+            } elseif (!empty($user->prefecture)) {
+                $recommend_products = Product::StoreAddressFilter($user->prefecture, $user->city)->latest()->take($display_count)->get();
+            } elseif ($genres->count() > 0) {
+                $recommend_products = Product::GenresFilter($genres->pluck('id')->toArray())->latest()->take($display_count)->get();
+            }
+        }
+
         //$tests = Store::withAvg('Posts', 'eva_average')->orderByDesc('posts_avg_eva_average')->take($display_count)->get();
-        return view('index', compact('browser', 'genres', 'payments', 'latests', 'evaluations', 'bookmarks'));
+        return view('index', compact('browser', 'genres', 'payments', 'latests', 'evaluations', 'bookmarks', 'recommend_products'));
     }
 
     /**
